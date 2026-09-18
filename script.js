@@ -1,605 +1,1086 @@
 /* =========================================================
-   시금치 잎 기반 인공 혈관 스캐폴드 시뮬레이션
-   STEP 1 → 5 인터랙션 전체 제어
-========================================================= */
-document.addEventListener("DOMContentLoaded", () => {
-    /* =====================================================
-       BASIC ELEMENTS
-    ===================================================== */
-    const steps = Array.from(
-        document.querySelectorAll(".experiment-step")
-    );
-    const progressSteps = Array.from(
-        document.querySelectorAll(".progress-step")
-    );
-    const progressFill =
-        document.querySelector(".progress-fill");
-    const previousButton =
-        document.querySelector("#previousStep");
-    const nextButton =
-        document.querySelector("#nextStep");
-    const currentStepText =
-        document.querySelector("#currentStep");
-    let currentStep = 1;
-    const TOTAL_STEPS = 5;
-    /* =====================================================
-       STEP NAVIGATION
-    ===================================================== */
-    function showStep(stepNumber) {
-        currentStep = Math.max(
-            1,
-            Math.min(TOTAL_STEPS, stepNumber)
+   SPINACH VASCULAR SCAFFOLD SIMULATION
+   ========================================================= */
+
+let currentStep = 1;
+const totalSteps = 5;
+
+
+/* =========================================================
+   DOM
+   ========================================================= */
+
+const screens =
+    document.querySelectorAll(".screen");
+
+const progressSteps =
+    document.querySelectorAll(".progress-step");
+
+const progressFill =
+    document.getElementById("progressFill");
+
+const prevButton =
+    document.getElementById("prevButton");
+
+const nextButton =
+    document.getElementById("nextButton");
+
+const currentStepText =
+    document.getElementById("currentStep");
+
+
+/* =========================================================
+   STEP NAVIGATION
+   ========================================================= */
+
+function updateStep() {
+
+    screens.forEach((screen, index) => {
+
+        screen.classList.toggle(
+            "active",
+            index + 1 === currentStep
         );
-        steps.forEach((step, index) => {
-            step.classList.toggle(
-                "active",
-                index + 1 === currentStep
-            );
-        });
-        progressSteps.forEach((step, index) => {
-            const number = index + 1;
-            step.classList.toggle(
-                "active",
-                number === currentStep
-            );
-            step.classList.toggle(
-                "completed",
-                number < currentStep
-            );
-        });
-        const progress =
-            ((currentStep - 1) /
-                (TOTAL_STEPS - 1)) * 100;
-        if (progressFill) {
-            progressFill.style.width =
-                `${progress}%`;
-        }
-        if (currentStepText) {
-            currentStepText.textContent =
-                `${String(currentStep).padStart(2, "0")} / 05`;
-        }
-        if (previousButton) {
-            previousButton.disabled =
-                currentStep === 1;
-        }
-        if (nextButton) {
-            nextButton.disabled =
-                currentStep === TOTAL_STEPS;
-        }
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
-        /*
-         * 각 Step에 진입할 때 필요한 초기화
-         */
-        if (currentStep === 2) {
-            resetDecellularization();
-        }
-        if (currentStep === 4) {
-            resetFlowSimulation();
-        }
-        if (currentStep === 5) {
-            updateFinalResults();
-        }
-    }
-    progressSteps.forEach((button, index) => {
-        button.addEventListener("click", () => {
-            showStep(index + 1);
-        });
+
     });
-    if (previousButton) {
-        previousButton.addEventListener(
-            "click",
-            () => showStep(currentStep - 1)
+
+
+    progressSteps.forEach((step, index) => {
+
+        const number = index + 1;
+
+        step.classList.remove(
+            "active",
+            "completed"
         );
+
+        if (number === currentStep) {
+            step.classList.add("active");
+        }
+
+        if (number < currentStep) {
+            step.classList.add("completed");
+        }
+
+    });
+
+
+    const percentage =
+        ((currentStep - 1) /
+        (totalSteps - 1)) * 100;
+
+    progressFill.style.width =
+        `${percentage}%`;
+
+
+    currentStepText.textContent =
+        currentStep;
+
+
+    prevButton.disabled =
+        currentStep === 1;
+
+
+    if (currentStep === totalSteps) {
+
+        nextButton.textContent =
+            "처음으로 ↻";
+
+    } else {
+
+        nextButton.textContent =
+            "다음 단계 →";
+
     }
-    if (nextButton) {
-        nextButton.addEventListener(
-            "click",
-            () => showStep(currentStep + 1)
-        );
+
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+
+    updateFinalResults();
+}
+
+
+nextButton.addEventListener(
+    "click",
+    () => {
+
+        if (currentStep < totalSteps) {
+
+            currentStep++;
+
+            updateStep();
+
+        } else {
+
+            resetSimulation();
+
+        }
+
     }
-    /* =====================================================
-       STEP 2
-       DECELLULARIZATION SIMULATION
-    ===================================================== */
-    const decellButton =
-        document.querySelector("#startDecellularization");
-    const decellFill =
-        document.querySelector("#decellFill");
-    const decellPercent =
-        document.querySelector("#decellPercent");
-    const decellStatus =
-        document.querySelector("#decellStatus");
-    const decellLeaf =
-        document.querySelector("#decellLeaf");
-    let decellTimer = null;
-    let decellProgress = 0;
-    function resetDecellularization() {
-        if (decellTimer) {
-            clearInterval(decellTimer);
-            decellTimer = null;
+);
+
+
+prevButton.addEventListener(
+    "click",
+    () => {
+
+        if (currentStep > 1) {
+
+            currentStep--;
+
+            updateStep();
+
         }
-        decellProgress = 0;
-        if (decellFill) {
-            decellFill.style.width = "0%";
-        }
-        if (decellPercent) {
-            decellPercent.textContent = "0%";
-        }
-        if (decellStatus) {
-            decellStatus.textContent =
-                "READY — 처리 대기";
-        }
-        if (decellLeaf) {
-            decellLeaf.style.filter =
-                "saturate(1)";
-            decellLeaf.style.opacity =
-                "1";
-        }
-        if (decellButton) {
-            decellButton.disabled = false;
-            decellButton.textContent =
-                "탈세포화 시작";
-        }
+
     }
-    function updateDecellularizationVisual() {
-        /*
-         * 실제 실험의 화학적 과정을
-         * 시각적으로 단순화하여 표현한다.
-         *
-         * 진행:
-         * 0–20% : 세포막과 세포 내용물에 접근
-         * 20–50%: 세포막 파괴 및 세포 성분 제거
-         * 50–80%: 잔여 유기물/지질 제거
-         * 80–100%: 셀룰로오스 기반 구조 노출
-         */
-        const p = decellProgress;
-        if (decellLeaf) {
+);
+
+
+/* =========================================================
+   PROGRESS NAVIGATION
+   ========================================================= */
+
+progressSteps.forEach((step) => {
+
+    step.addEventListener(
+        "click",
+        () => {
+
+            const target =
+                Number(step.dataset.step);
+
             /*
-             * 녹색이 점점 빠지는 효과
+             * 현재까지 도달한 단계까지만
+             * 직접 이동할 수 있도록 설정
              */
-            const saturation =
-                Math.max(0, 1 - p / 100);
-            const brightness =
-                1 + (p / 100) * 0.15;
-            decellLeaf.style.filter =
-                `saturate(${saturation})
-                 brightness(${brightness})`;
-            /*
-             * 100%에 가까워질수록
-             * 반투명한 scaffold처럼 표현
-             */
-            if (p >= 85) {
-                decellLeaf.style.opacity =
-                    `${1 - ((p - 85) / 15) * 0.12`;
+
+            if (target <= currentStep) {
+
+                currentStep =
+                    target;
+
+                updateStep();
+
             }
+
         }
-        if (decellStatus) {
-            if (p < 20) {
-                decellStatus.textContent =
-                    "PHASE 01 — 세포막 접근";
-            } else if (p < 50) {
-                decellStatus.textContent =
-                    "PHASE 02 — 세포 성분 제거";
-            } else if (p < 80) {
-                decellStatus.textContent =
-                    "PHASE 03 — 잔여 유기물 제거";
-            } else if (p < 100) {
-                decellStatus.textContent =
-                    "PHASE 04 — ECM 구조 노출";
-            } else {
-                decellStatus.textContent =
-                    "COMPLETE — Cellulose scaffold";
-            }
-        }
-    }
-    function startDecellularization() {
-        if (decellTimer) return;
-        decellProgress = 0;
-        if (decellButton) {
-            decellButton.disabled = true;
-            decellButton.textContent =
-                "탈세포화 진행 중...";
-        }
-        decellTimer = setInterval(() => {
-            /*
-             * 너무 빠르지 않도록
-             * 단계별 과정을 확인할 수 있게 한다.
-             */
-            decellProgress += 1;
-            if (decellProgress > 100) {
-                decellProgress = 100;
-            }
-            if (decellFill) {
-                decellFill.style.width =
-                    `${decellProgress}%`;
-            }
-            if (decellPercent) {
-                decellPercent.textContent =
-                    `${decellProgress}%`;
-            }
-            updateDecellularizationVisual();
-            if (decellProgress >= 100) {
-                clearInterval(decellTimer);
-                decellTimer = null;
-                if (decellButton) {
-                    decellButton.disabled = false;
-                    decellButton.textContent =
-                        "다시 시뮬레이션";
-                }
-                if (decellStatus) {
-                    decellStatus.textContent =
-                        "COMPLETE — 탈세포화 완료";
-                }
-            }
-        }, 55);
-    }
-    if (decellButton) {
-        decellButton.addEventListener(
-            "click",
-            startDecellularization
-        );
-    }
-    /* =====================================================
-       STEP 4
-       MICROFLUIDIC / DYE FLOW SIMULATION
-    ===================================================== */
-    const flowButton =
-        document.querySelector("#startFlow");
-    const flowStatus =
-        document.querySelector("#flowStatus");
-    const flowParticles =
-        Array.from(
-            document.querySelectorAll(".particle")
-        );
-    const distanceValue =
-        document.querySelector("#distanceValue");
-    const timeValue =
-        document.querySelector("#timeValue");
-    const velocityValue =
-        document.querySelector("#velocityValue");
-    const branchValue =
-        document.querySelector("#branchValue");
-    const flowProgress =
-        document.querySelector("#flowProgress");
-    let flowTimer = null;
-    let flowStartTime = null;
-    let flowRunning = false;
-    let particleIndex = 0;
-    /*
-     * 실제 잎맥의 분지 네트워크를
-     * 따라 움직이는 것처럼 보이도록
-     * 여러 개의 경로를 사용한다.
-     *
-     * SVG path의 getPointAtLength()를 이용하여
-     * particle이 경로를 따라 이동한다.
-     */
-    const flowPaths =
-        Array.from(
-            document.querySelectorAll(".flow-path")
-        );
-    function resetFlowSimulation() {
-        if (flowTimer) {
-            cancelAnimationFrame(flowTimer);
-            flowTimer = null;
-        }
-        flowRunning = false;
-        particleIndex = 0;
-        flowParticles.forEach(
-            particle => {
-                particle.classList.remove(
-                    "visible"
-                );
-                particle.style.opacity = "0";
-            }
-        );
-        if (flowStatus) {
-            flowStatus.textContent =
-                "READY";
-            flowStatus.classList.remove(
-                "running"
-            );
-        }
-        if (flowButton) {
-            flowButton.disabled = false;
-            flowButton.textContent =
-                "색소 주입 시작";
-        }
-        if (distanceValue) {
-            distanceValue.textContent =
-                "0.0 mm";
-        }
-        if (timeValue) {
-            timeValue.textContent =
-                "0.0 s";
-        }
-        if (velocityValue) {
-            velocityValue.textContent =
-                "0.00 mm/s";
-        }
-        if (branchValue) {
-            branchValue.textContent =
-                "0";
-        }
-        if (flowProgress) {
-            flowProgress.style.width =
-                "0%";
-        }
-    }
-    function getPathLength(path) {
-        try {
-            return path.getTotalLength();
-        } catch (error) {
-            return 1;
-        }
-    }
-    function moveParticle(
-        particle,
-        path,
-        progress
-    ) {
-        if (!particle || !path) return;
-        const length =
-            getPathLength(path);
-        const point =
-            path.getPointAtLength(
-                length * progress
-            );
-        particle.setAttribute(
-            "cx",
-            point.x
-        );
-        particle.setAttribute(
-            "cy",
-            point.y
-        );
-    }
-    function runFlowAnimation(timestamp) {
-        if (!flowRunning) return;
-        if (!flowStartTime) {
-            flowStartTime = timestamp;
-        }
-        const elapsed =
-            timestamp - flowStartTime;
-        /*
-         * 0~12초 동안 전체 네트워크를
-         * 통과하는 시뮬레이션
-         */
-        const totalDuration = 12000;
-        const overallProgress =
-            Math.min(
-                elapsed / totalDuration,
-                1
-            );
-        /*
-         * 각 경로마다 서로 다른 시작 지연을 둔다.
-         * 이것 때문에 직선 하나가 아니라
-         * 여러 분지에서 동시에 색소가 퍼지는
-         * 형태로 보인다.
-         */
-        flowPaths.forEach(
-            (path, pathIndex) => {
-                const delay =
-                    pathIndex * 0.045;
-                const localProgress =
-                    Math.max(
-                        0,
-                        Math.min(
-                            1,
-                            (overallProgress - delay)
-                            / (1 - delay)
-                        )
-                    );
-                const particle =
-                    flowParticles[
-                        pathIndex %
-                        flowParticles.length
-                    ];
-                if (
-                    localProgress > 0 &&
-                    localProgress < 1
-                ) {
-                    particle.classList.add(
-                        "visible"
-                    );
-                    particle.style.opacity =
-                        "0.95";
-                    moveParticle(
-                        particle,
-                        path,
-                        localProgress
-                    );
-                }
-                if (
-                    localProgress >= 1
-                ) {
-                    particle.style.opacity =
-                        "0.55";
-                }
-            }
-        );
-        /*
-         * 실험에서 측정되는 이동 거리와 시간
-         * 예시 모델값
-         *
-         * 실제 실험에서는 스마트폰 영상이나
-         * 자/눈금으로 측정한 값을 넣으면 된다.
-         */
-        const distance =
-            42 * overallProgress;
-        const time =
-            elapsed / 1000;
-        const velocity =
-            time > 0
-                ? distance / time
-                : 0;
-        if (distanceValue) {
-            distanceValue.textContent =
-                `${distance.toFixed(1)} mm`;
-        }
-        if (timeValue) {
-            timeValue.textContent =
-                `${time.toFixed(1)} s`;
-        }
-        if (velocityValue) {
-            velocityValue.textContent =
-                `${velocity.toFixed(2)} mm/s`;
-        }
-        /*
-         * 분지 수가 점차 활성화되는 효과
-         */
-        const activeBranches =
-            Math.min(
-                12,
-                Math.floor(
-                    overallProgress * 12
-                )
-            );
-        if (branchValue) {
-            branchValue.textContent =
-                activeBranches;
-        }
-        if (flowProgress) {
-            flowProgress.style.width =
-                `${overallProgress * 100}%`;
-        }
-        if (overallProgress >= 1) {
-            flowRunning = false;
-            flowTimer = null;
-            if (flowStatus) {
-                flowStatus.textContent =
-                    "COMPLETE — 분지 네트워크 관류 완료";
-                flowStatus.classList.remove(
-                    "running"
-                );
-            }
-            if (flowButton) {
-                flowButton.disabled = false;
-                flowButton.textContent =
-                    "다시 시뮬레이션";
-            }
+    );
+
+});
+
+
+/* =========================================================
+   STEP 2
+   DECELLULARIZATION
+   ========================================================= */
+
+let decellProgress = 0;
+let decellRunning = false;
+
+const decellButton =
+    document.getElementById(
+        "decellButton"
+    );
+
+const decellBar =
+    document.getElementById(
+        "decellBar"
+    );
+
+const decellPercent =
+    document.getElementById(
+        "decellPercent"
+    );
+
+const decellStatus =
+    document.getElementById(
+        "decellStatus"
+    );
+
+const decellLeaf =
+    document.getElementById(
+        "decellLeaf"
+    );
+
+const cellLayer =
+    document.getElementById(
+        "cellLayer"
+    );
+
+const decellState =
+    document.getElementById(
+        "decellState"
+    );
+
+
+decellButton.addEventListener(
+    "click",
+    () => {
+
+        if (decellRunning) {
             return;
         }
-        flowTimer =
-            requestAnimationFrame(
-                runFlowAnimation
-            );
+
+        decellRunning = true;
+
+        decellButton.disabled =
+            true;
+
+        decellButton.textContent =
+            "탈세포화 진행 중...";
+
+        decellProgress = 0;
+
+        runDecellularization();
+
     }
-    function startFlowSimulation() {
-        if (flowRunning) return;
-        resetFlowSimulation();
-        flowRunning = true;
-        flowStartTime = null;
-        if (flowStatus) {
-            flowStatus.textContent =
-                "RUNNING — 미세유체 관류 중";
-            flowStatus.classList.add(
-                "running"
-            );
-        }
-        if (flowButton) {
-            flowButton.disabled = true;
-            flowButton.textContent =
-                "관류 진행 중...";
-        }
-        flowTimer =
-            requestAnimationFrame(
-                runFlowAnimation
-            );
+);
+
+
+function runDecellularization() {
+
+    if (decellProgress >= 100) {
+
+        finishDecellularization();
+
+        return;
     }
-    if (flowButton) {
-        flowButton.addEventListener(
-            "click",
-            startFlowSimulation
-        );
-    }
-    /* =====================================================
-       STEP 5
-       RESULT ANALYSIS
-    ===================================================== */
-    const finalVelocity =
-        document.querySelector("#finalVelocity");
-    const finalBranches =
-        document.querySelector("#finalBranches");
-    const finalDistance =
-        document.querySelector("#finalDistance");
-    const finalTime =
-        document.querySelector("#finalTime");
-    function updateFinalResults() {
-        /*
-         * 기본 시뮬레이션 결과값
-         *
-         * 실제 실험 데이터를 넣고 싶다면
-         * 아래 숫자만 수정하면 된다.
-         */
-        const result = {
-            distance: 42.0,
-            time: 12.0,
-            velocity: 3.50,
-            branches: 12
-        };
-        if (finalVelocity) {
-            finalVelocity.textContent =
-                `${result.velocity.toFixed(2)} mm/s`;
-        }
-        if (finalBranches) {
-            finalBranches.textContent =
-                result.branches;
-        }
-        if (finalDistance) {
-            finalDistance.textContent =
-                `${result.distance.toFixed(1)} mm`;
-        }
-        if (finalTime) {
-            finalTime.textContent =
-                `${result.time.toFixed(1)} s`;
-        }
-    }
-    /* =====================================================
-       OPTIONAL — DATA MODEL
-       실험 데이터를 JS에서 관리할 수 있도록 구성
-    ===================================================== */
-    const experimentData = {
-        specimen: {
-            material: "Spinacia oleracea",
-            scaffold: "Plant-derived cellulose",
-            structure: "Leaf vascular network"
-        },
-        decellularization: {
-            surfactant:
-                "SDS / Triton X-100",
-            target:
-                "plant cellular components",
-            remainingStructure:
-                "cellulose-rich vascular scaffold"
-        },
-        perfusion: {
-            model:
-                "microfluidic perfusion",
-            injection:
-                "constant-flow concept",
-            tracer:
-                "food-grade dye"
-        },
-        analysis: {
-            law:
-                "Hagen–Poiseuille Law",
-            branching:
-                "Murray's Law",
-            biomimicry:
-                true
-        }
-    };
+
+
+    decellProgress += 1;
+
+
+    decellBar.style.width =
+        `${decellProgress}%`;
+
+    decellPercent.textContent =
+        `${decellProgress}%`;
+
+
     /*
-     * 브라우저 개발자 도구에서
-     * experimentData를 확인할 수 있다.
+     * 단계별 과학적 설명
      */
-    window.experimentData =
-        experimentData;
-    /* =====================================================
-       INITIAL STATE
-    ===================================================== */
-    showStep(1);
-});
+
+    if (decellProgress < 20) {
+
+        decellState.textContent =
+            "SOLUTION EXPOSURE";
+
+        decellStatus.textContent =
+            "처리 용액이 잎 조직의 관다발 경로에 접근하는 단계입니다.";
+
+    }
+
+    else if (decellProgress < 45) {
+
+        decellState.textContent =
+            "MEMBRANE DISRUPTION";
+
+        decellStatus.textContent =
+            "계면활성제에 의해 세포막과 세포 성분이 제거되는 과정을 모델링합니다.";
+
+    }
+
+    else if (decellProgress < 70) {
+
+        decellState.textContent =
+            "CELLULAR MATERIAL REMOVAL";
+
+        decellStatus.textContent =
+            "녹색 색소와 세포성 물질이 감소하면서 잎맥 구조가 상대적으로 드러납니다.";
+
+    }
+
+    else if (decellProgress < 90) {
+
+        decellState.textContent =
+            "CLEARING / WASHING";
+
+        decellStatus.textContent =
+            "잔여 처리 성분과 제거된 물질을 씻어내는 후처리 단계입니다.";
+
+    }
+
+    else {
+
+        decellState.textContent =
+            "SCAFFOLD REVEALED";
+
+        decellStatus.textContent =
+            "관다발 구조가 유지된 식물성 지지체 모델이 나타납니다.";
+
+    }
+
+
+    /*
+     * 잎의 색소 감소 모델
+     */
+
+    const remaining =
+        1 -
+        decellProgress / 100;
+
+
+    /*
+     * green → pale scaffold
+     */
+
+    const red =
+        Math.round(
+            120 +
+            (225 - 120) *
+            (1 - remaining)
+        );
+
+    const green =
+        Math.round(
+            160 +
+            (220 - 160) *
+            (1 - remaining)
+        );
+
+    const blue =
+        Math.round(
+            105 +
+            (215 - 105) *
+            (1 - remaining)
+        );
+
+
+    decellLeaf.style.fill =
+        `rgb(${red},${green},${blue})`;
+
+    decellLeaf.style.opacity =
+        Math.max(
+            0.10,
+            remaining
+        );
+
+
+    cellLayer.style.opacity =
+        Math.max(
+            0,
+            remaining * 0.75
+        );
+
+
+    setTimeout(
+        runDecellularization,
+        45
+    );
+}
+
+
+function finishDecellularization() {
+
+    decellProgress = 100;
+
+    decellBar.style.width =
+        "100%";
+
+    decellPercent.textContent =
+        "100%";
+
+    decellState.textContent =
+        "SCAFFOLD READY";
+
+    decellStatus.textContent =
+        "모델상 탈세포화가 완료되었습니다. 다음 단계에서 구조 보존과 관류 가능성을 분석합니다.";
+
+    decellButton.textContent =
+        "탈세포화 완료";
+
+    decellRunning = false;
+}
+
+
+/* =========================================================
+   STEP 4
+   PERFUSION NETWORK
+   ========================================================= */
+
+const flowButton =
+    document.getElementById(
+        "flowButton"
+    );
+
+const flowRate =
+    document.getElementById(
+        "flowRate"
+    );
+
+const flowRateValue =
+    document.getElementById(
+        "flowRateValue"
+    );
+
+const timeValue =
+    document.getElementById(
+        "timeValue"
+    );
+
+const distanceValue =
+    document.getElementById(
+        "distanceValue"
+    );
+
+const speedValue =
+    document.getElementById(
+        "speedValue"
+    );
+
+const activeBranches =
+    document.getElementById(
+        "activeBranches"
+    );
+
+const flowState =
+    document.getElementById(
+        "flowState"
+    );
+
+const particles =
+    document.querySelectorAll(
+        ".particle"
+    );
+
+
+/*
+ * 모델상의 분지점
+ */
+
+const branchPoints = [
+    { x: 210, y: 300 },
+    { x: 285, y: 285 },
+    { x: 365, y: 270 },
+    { x: 450, y: 250 },
+    { x: 545, y: 215 }
+];
+
+
+/*
+ * 여러 branch path
+ *
+ * 색소가 하나의 직선이 아니라
+ * 서로 다른 경로를 따라 이동하도록
+ * 각각 별도의 경로를 정의한다.
+ */
+
+const branchPaths = [
+
+    [
+        {x:70,y:315},
+        {x:150,y:308},
+        {x:210,y:300},
+        {x:175,y:220},
+        {x:145,y:125}
+    ],
+
+    [
+        {x:70,y:315},
+        {x:150,y:308},
+        {x:210,y:300},
+        {x:285,y:285},
+        {x:280,y:100}
+    ],
+
+    [
+        {x:70,y:315},
+        {x:160,y:305},
+        {x:285,y:285},
+        {x:365,y:270},
+        {x:445,y:105}
+    ],
+
+    [
+        {x:70,y:315},
+        {x:170,y:310},
+        {x:285,y:285},
+        {x:365,y:270},
+        {x:450,y:250},
+        {x:585,y:125}
+    ],
+
+    [
+        {x:70,y:315},
+        {x:180,y:310},
+        {x:365,y:270},
+        {x:450,y:250},
+        {x:545,y:215},
+        {x:720,y:180}
+    ],
+
+    [
+        {x:70,y:315},
+        {x:180,y:310},
+        {x:210,y:300},
+        {x:150,y:440},
+        {x:70,y:485}
+    ],
+
+    [
+        {x:70,y:315},
+        {x:190,y:305},
+        {x:285,y:285},
+        {x:275,y:475},
+        {x:225,y:535}
+    ],
+
+    [
+        {x:70,y:315},
+        {x:200,y:305},
+        {x:365,y:270},
+        {x:430,y:440},
+        {x:500,y:515}
+    ]
+
+];
+
+
+let flowRunning = false;
+let flowStartTime = null;
+let animationFrame = null;
+
+let simulationTime = 0;
+let simulationDistance = 0;
+let simulationSpeed = 0;
+
+const modelDistance =
+    42;
+
+
+/* =========================================================
+   FLOW RATE
+   ========================================================= */
+
+flowRate.addEventListener(
+    "input",
+    () => {
+
+        flowRateValue.textContent =
+            Number(flowRate.value)
+                .toFixed(1);
+
+    }
+);
+
+
+/* =========================================================
+   START PERFUSION
+   ========================================================= */
+
+flowButton.addEventListener(
+    "click",
+    () => {
+
+        if (flowRunning) {
+            return;
+        }
+
+        startPerfusion();
+
+    }
+);
+
+
+function startPerfusion() {
+
+    flowRunning = true;
+
+    flowStartTime =
+        performance.now();
+
+    simulationTime = 0;
+    simulationDistance = 0;
+    simulationSpeed = 0;
+
+
+    flowButton.disabled =
+        true;
+
+    flowButton.textContent =
+        "관류 진행 중...";
+
+    flowState.textContent =
+        "PERFUSING";
+
+
+    particles.forEach(
+        (particle) => {
+
+            particle.style.opacity =
+                "1";
+
+        }
+    );
+
+
+    animatePerfusion();
+
+}
+
+
+/* =========================================================
+   ANIMATION
+   ========================================================= */
+
+function animatePerfusion() {
+
+    const now =
+        performance.now();
+
+
+    simulationTime =
+        (now - flowStartTime) /
+        1000;
+
+
+    /*
+     * 유량이 높을수록
+     * 모델상의 이동 시간이 짧아진다.
+     */
+
+    const rate =
+        Number(flowRate.value);
+
+
+    const duration =
+        9 / rate;
+
+
+    let progress =
+        simulationTime /
+        duration;
+
+
+    if (progress > 1) {
+        progress = 1;
+    }
+
+
+    /*
+     * 여러 입자를 각각 다른
+     * branch path에 배치
+     */
+
+    particles.forEach(
+        (particle, index) => {
+
+            const delay =
+                index * 0.055;
+
+            let local =
+                progress - delay;
+
+            if (local < 0) {
+                local = 0;
+            }
+
+            if (local > 1) {
+                local = 1;
+            }
+
+
+            const path =
+                branchPaths[
+                    index %
+                    branchPaths.length
+                ];
+
+
+            const position =
+                positionOnPath(
+                    path,
+                    local
+                );
+
+
+            particle.setAttribute(
+                "cx",
+                position.x
+            );
+
+            particle.setAttribute(
+                "cy",
+                position.y
+            );
+
+        }
+    );
+
+
+    simulationDistance =
+        modelDistance *
+        progress;
+
+
+    if (simulationTime > 0) {
+
+        simulationSpeed =
+            simulationDistance /
+            simulationTime;
+
+    }
+
+
+    timeValue.textContent =
+        `${simulationTime.toFixed(1)} s`;
+
+    distanceValue.textContent =
+        `${simulationDistance.toFixed(1)} mm`;
+
+    speedValue.textContent =
+        `${simulationSpeed.toFixed(2)} mm/s`;
+
+
+    /*
+     * 분지 활성화 모델
+     */
+
+    const branchNumber =
+        Math.min(
+            11,
+            Math.floor(
+                progress * 11
+            )
+        );
+
+    activeBranches.textContent =
+        `${branchNumber} / 11`;
+
+
+    if (progress >= 1) {
+
+        finishPerfusion();
+
+        return;
+
+    }
+
+
+    animationFrame =
+        requestAnimationFrame(
+            animatePerfusion
+        );
+}
+
+
+/* =========================================================
+   PATH INTERPOLATION
+   ========================================================= */
+
+function positionOnPath(
+    path,
+    progress
+) {
+
+    if (progress <= 0) {
+
+        return path[0];
+
+    }
+
+    if (progress >= 1) {
+
+        return path[path.length - 1];
+
+    }
+
+
+    /*
+     * 각 segment 길이를 계산
+     */
+
+    let totalLength = 0;
+
+    const lengths = [];
+
+
+    for (
+        let i = 0;
+        i < path.length - 1;
+        i++
+    ) {
+
+        const dx =
+            path[i + 1].x -
+            path[i].x;
+
+        const dy =
+            path[i + 1].y -
+            path[i].y;
+
+        const length =
+            Math.sqrt(
+                dx * dx +
+                dy * dy
+            );
+
+        lengths.push(length);
+
+        totalLength += length;
+
+    }
+
+
+    let target =
+        totalLength *
+        progress;
+
+
+    for (
+        let i = 0;
+        i < lengths.length;
+        i++
+    ) {
+
+        if (target <= lengths[i]) {
+
+            const ratio =
+                target /
+                lengths[i];
+
+            return {
+
+                x:
+                    path[i].x +
+                    (
+                        path[i + 1].x -
+                        path[i].x
+                    ) *
+                    ratio,
+
+                y:
+                    path[i].y +
+                    (
+                        path[i + 1].y -
+                        path[i].y
+                    ) *
+                    ratio
+
+            };
+
+        }
+
+        target -= lengths[i];
+
+    }
+
+
+    return path[path.length - 1];
+}
+
+
+/* =========================================================
+   FINISH PERFUSION
+   ========================================================= */
+
+function finishPerfusion() {
+
+    flowRunning = false;
+
+
+    if (animationFrame) {
+
+        cancelAnimationFrame(
+            animationFrame
+        );
+
+    }
+
+
+    simulationTime =
+        9 /
+        Number(flowRate.value);
+
+
+    simulationDistance =
+        modelDistance;
+
+
+    simulationSpeed =
+        simulationDistance /
+        simulationTime;
+
+
+    timeValue.textContent =
+        `${simulationTime.toFixed(1)} s`;
+
+    distanceValue.textContent =
+        `${simulationDistance.toFixed(1)} mm`;
+
+    speedValue.textContent =
+        `${simulationSpeed.toFixed(2)} mm/s`;
+
+
+    activeBranches.textContent =
+        "11 / 11";
+
+
+    flowState.textContent =
+        "NETWORK PERFUSED";
+
+
+    flowButton.disabled =
+        false;
+
+    flowButton.textContent =
+        "다시 관류하기";
+
+
+    updateFinalResults();
+
+}
+
+
+/* =========================================================
+   FINAL RESULT
+   ========================================================= */
+
+function updateFinalResults() {
+
+    const finalDistance =
+        document.getElementById(
+            "finalDistance"
+        );
+
+    const finalSpeed =
+        document.getElementById(
+            "finalSpeed"
+        );
+
+
+    if (finalDistance) {
+
+        finalDistance.textContent =
+            `${simulationDistance.toFixed(1)} mm`;
+
+    }
+
+
+    if (finalSpeed) {
+
+        finalSpeed.textContent =
+            `${simulationSpeed.toFixed(2)} mm/s`;
+
+    }
+
+}
+
+
+/* =========================================================
+   RESET
+   ========================================================= */
+
+function resetSimulation() {
+
+    currentStep = 1;
+
+    decellProgress = 0;
+    decellRunning = false;
+
+    decellBar.style.width =
+        "0%";
+
+    decellPercent.textContent =
+        "0%";
+
+    decellStatus.textContent =
+        "탈세포화 모델을 시작하세요.";
+
+    decellButton.disabled =
+        false;
+
+    decellButton.textContent =
+        "탈세포화 시작";
+
+    decellState.textContent =
+        "READY";
+
+
+    decellLeaf.style.fill =
+        "#789e6c";
+
+    decellLeaf.style.opacity =
+        "1";
+
+    cellLayer.style.opacity =
+        "0.75";
+
+
+    flowRunning = false;
+
+    if (animationFrame) {
+
+        cancelAnimationFrame(
+            animationFrame
+        );
+
+    }
+
+
+    simulationTime = 0;
+    simulationDistance = 0;
+    simulationSpeed = 0;
+
+
+    timeValue.textContent =
+        "0.0 s";
+
+    distanceValue.textContent =
+        "0.0 mm";
+
+    speedValue.textContent =
+        "0.0 mm/s";
+
+    activeBranches.textContent =
+        "0 / 11";
+
+
+    flowState.textContent =
+        "READY";
+
+
+    particles.forEach(
+        (particle) => {
+
+            particle.style.opacity =
+                "0";
+
+            particle.setAttribute(
+                "cx",
+                "70"
+            );
+
+            particle.setAttribute(
+                "cy",
+                "315"
+            );
+
+        }
+    );
+
+
+    flowButton.disabled =
+        false;
+
+    flowButton.textContent =
+        "관류 시작";
+
+
+    updateFinalResults();
+
+    updateStep();
+
+}
+
+
+/* =========================================================
+   INITIALIZE
+   ========================================================= */
+
+updateStep();
