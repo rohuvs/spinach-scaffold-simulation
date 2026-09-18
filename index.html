@@ -1,1 +1,482 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spinach Vascular Scaffold Simulation</title>
+    <link rel="stylesheet" href="style.css">
+</head>
 
+<body>
+
+<header class="topbar">
+    <div class="brand">
+        <span class="brand-icon">🧪</span>
+        <div>
+            <h1>Spinach Vascular Scaffold</h1>
+            <p>시금치 잎을 이용한 인공 혈관 스캐폴드 시뮬레이션</p>
+        </div>
+    </div>
+</header>
+
+
+<main class="container">
+
+    <!-- 진행 단계 -->
+    <section class="progress-section">
+
+        <div class="progress-line">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+
+        <div class="steps">
+
+            <div class="step active" data-step="1">
+                <div class="step-circle">1</div>
+                <span>준비</span>
+            </div>
+
+            <div class="step" data-step="2">
+                <div class="step-circle">2</div>
+                <span>탈세포화</span>
+            </div>
+
+            <div class="step" data-step="3">
+                <div class="step-circle">3</div>
+                <span>세척</span>
+            </div>
+
+            <div class="step" data-step="4">
+                <div class="step-circle">4</div>
+                <span>색소 이동</span>
+            </div>
+
+            <div class="step" data-step="5">
+                <div class="step-circle">5</div>
+                <span>결과 분석</span>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- 실험 화면 -->
+    <section class="experiment-card">
+
+        <!-- STEP 1 -->
+        <div class="experiment-step active" id="step1">
+
+            <div class="step-label">STEP 01</div>
+
+            <h2>시금치 잎 준비 및 관찰</h2>
+
+            <p class="description">
+                탈세포화 전 시금치 잎의 형태와 잎맥 구조를 관찰합니다.
+                잎 전체의 녹색 조직과 중심 잎맥, 측면 잎맥을 확인해보세요.
+            </p>
+
+            <div class="visual-area">
+
+                <div class="leaf-wrapper">
+                    <svg id="leafBefore" viewBox="0 0 500 400">
+                        <ellipse
+                            cx="250"
+                            cy="200"
+                            rx="180"
+                            ry="130"
+                            transform="rotate(-10 250 200)"
+                            class="leaf-body"
+                        />
+
+                        <path
+                            d="M80 230 Q250 200 420 170"
+                            class="main-vein"
+                        />
+
+                        <path d="M150 218 Q130 150 105 115" class="vein"/>
+                        <path d="M190 210 Q180 135 170 100" class="vein"/>
+                        <path d="M230 202 Q225 120 220 85" class="vein"/>
+                        <path d="M275 195 Q290 120 305 85" class="vein"/>
+                        <path d="M320 187 Q350 130 385 105" class="vein"/>
+
+                        <path d="M145 220 Q125 275 105 300" class="vein"/>
+                        <path d="M190 210 Q175 280 160 315" class="vein"/>
+                        <path d="M235 202 Q230 285 225 325" class="vein"/>
+                        <path d="M280 195 Q295 275 315 310" class="vein"/>
+                        <path d="M325 185 Q355 245 390 270" class="vein"/>
+                    </svg>
+                </div>
+
+                <div class="observation-panel">
+
+                    <h3>관찰 기록</h3>
+
+                    <div class="observation-item">
+                        <span>잎의 녹색 조직</span>
+                        <strong>존재</strong>
+                    </div>
+
+                    <div class="observation-item">
+                        <span>중심 잎맥</span>
+                        <strong>1개</strong>
+                    </div>
+
+                    <div class="observation-item">
+                        <span>측면 잎맥</span>
+                        <strong>10개</strong>
+                    </div>
+
+                    <div class="observation-item">
+                        <span>전체 구조</span>
+                        <strong>분지형 네트워크</strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- STEP 2 -->
+        <div class="experiment-step" id="step2">
+
+            <div class="step-label">STEP 02</div>
+
+            <h2>탈세포화</h2>
+
+            <p class="description">
+                시뮬레이션에서 세포 조직이 점차 제거되면서
+                상대적으로 잎맥 구조가 드러나는 과정을 관찰합니다.
+            </p>
+
+            <div class="visual-area">
+
+                <div class="leaf-wrapper">
+                    <svg id="leafDecell" viewBox="0 0 500 400">
+
+                        <ellipse
+                            id="decellBody"
+                            cx="250"
+                            cy="200"
+                            rx="180"
+                            ry="130"
+                            transform="rotate(-10 250 200)"
+                            class="leaf-body decell-body"
+                        />
+
+                        <path d="M80 230 Q250 200 420 170"
+                              class="main-vein"/>
+
+                        <path d="M150 218 Q130 150 105 115" class="vein"/>
+                        <path d="M190 210 Q180 135 170 100" class="vein"/>
+                        <path d="M230 202 Q225 120 220 85" class="vein"/>
+                        <path d="M275 195 Q290 120 305 85" class="vein"/>
+                        <path d="M320 187 Q350 130 385 105" class="vein"/>
+
+                        <path d="M145 220 Q125 275 105 300" class="vein"/>
+                        <path d="M190 210 Q175 280 160 315" class="vein"/>
+                        <path d="M235 202 Q230 285 225 325" class="vein"/>
+                        <path d="M280 195 Q295 275 315 310" class="vein"/>
+                        <path d="M325 185 Q355 245 390 270" class="vein"/>
+
+                    </svg>
+                </div>
+
+                <div class="control-panel">
+
+                    <div class="progress-box">
+
+                        <div class="progress-header">
+                            <span>탈세포화 진행률</span>
+                            <strong id="decellPercent">0%</strong>
+                        </div>
+
+                        <div class="bar">
+                            <div class="bar-fill" id="decellBar"></div>
+                        </div>
+
+                        <p id="decellStatus">
+                            탈세포화를 시작해주세요.
+                        </p>
+
+                    </div>
+
+                    <button class="primary-button" id="decellButton">
+                        탈세포화 시작
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- STEP 3 -->
+        <div class="experiment-step" id="step3">
+
+            <div class="step-label">STEP 03</div>
+
+            <h2>세척</h2>
+
+            <p class="description">
+                탈세포화 과정 이후 남아 있는 용액 성분을 제거하는
+                세척 과정을 시뮬레이션합니다.
+            </p>
+
+            <div class="visual-area comparison">
+
+                <div class="comparison-card">
+
+                    <h3>탈세포화 전</h3>
+
+                    <div class="mini-leaf green-leaf">
+                        🌿
+                    </div>
+
+                    <p>녹색 조직이 존재</p>
+
+                </div>
+
+
+                <div class="arrow">→</div>
+
+
+                <div class="comparison-card">
+
+                    <h3>탈세포화 후</h3>
+
+                    <div class="mini-leaf scaffold-leaf">
+                        ╱╲<br>
+                        ─┼─<br>
+                        ╲╱
+                    </div>
+
+                    <p>잎맥 구조가 상대적으로 드러남</p>
+
+                </div>
+
+            </div>
+
+            <div class="wash-box">
+
+                <div class="wash-icon">💧</div>
+
+                <div>
+                    <h3>세척 완료</h3>
+                    <p>
+                        시뮬레이션상 세척 과정이 완료되었습니다.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- STEP 4 -->
+        <div class="experiment-step" id="step4">
+
+            <div class="step-label">STEP 04</div>
+
+            <h2>색소 이동 실험</h2>
+
+            <p class="description">
+                색소를 잎맥의 시작점에 주입하고,
+                잎맥 네트워크를 따라 이동하는 모습을 관찰합니다.
+            </p>
+
+            <div class="flow-area">
+
+                <div class="flow-visual">
+
+                    <svg id="flowSvg" viewBox="0 0 500 400">
+
+                        <!-- 잎맥 -->
+                        <path
+                            d="M80 230 Q250 200 420 170"
+                            class="flow-vein"
+                        />
+
+                        <path d="M150 218 Q130 150 105 115" class="flow-vein"/>
+                        <path d="M190 210 Q180 135 170 100" class="flow-vein"/>
+                        <path d="M230 202 Q225 120 220 85" class="flow-vein"/>
+                        <path d="M275 195 Q290 120 305 85" class="flow-vein"/>
+                        <path d="M320 187 Q350 130 385 105" class="flow-vein"/>
+
+                        <path d="M145 220 Q125 275 105 300" class="flow-vein"/>
+                        <path d="M190 210 Q175 280 160 315" class="flow-vein"/>
+                        <path d="M235 202 Q230 285 225 325" class="flow-vein"/>
+                        <path d="M280 195 Q295 275 315 310" class="flow-vein"/>
+                        <path d="M325 185 Q355 245 390 270" class="flow-vein"/>
+
+                        <!-- 색소 -->
+                        <circle
+                            id="dyeDot"
+                            cx="80"
+                            cy="230"
+                            r="9"
+                        />
+
+                    </svg>
+
+                    <div class="injection-label">
+                        색소 주입 위치
+                    </div>
+
+                </div>
+
+
+                <div class="flow-data">
+
+                    <h3>실시간 측정</h3>
+
+                    <div class="data-row">
+                        <span>경과 시간</span>
+                        <strong id="timeValue">0.0 s</strong>
+                    </div>
+
+                    <div class="data-row">
+                        <span>이동 거리</span>
+                        <strong id="distanceValue">0.0 mm</strong>
+                    </div>
+
+                    <div class="data-row">
+                        <span>이동 속도</span>
+                        <strong id="speedValue">0.0 mm/s</strong>
+                    </div>
+
+                    <button
+                        class="primary-button"
+                        id="flowButton"
+                    >
+                        색소 이동 시작
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- STEP 5 -->
+        <div class="experiment-step" id="step5">
+
+            <div class="step-label">STEP 05</div>
+
+            <h2>결과 분석</h2>
+
+            <p class="description">
+                시뮬레이션 과정에서 얻어진 값을 정리하고
+                인공 혈관망 구조의 특징을 분석합니다.
+            </p>
+
+            <div class="result-grid">
+
+                <div class="result-card">
+                    <span>탈세포화 상태</span>
+                    <strong>완료</strong>
+                </div>
+
+                <div class="result-card">
+                    <span>잎맥 개수</span>
+                    <strong id="veinCount">11</strong>
+                </div>
+
+                <div class="result-card">
+                    <span>분지점 수</span>
+                    <strong id="branchCount">10</strong>
+                </div>
+
+                <div class="result-card">
+                    <span>색소 이동 거리</span>
+                    <strong id="finalDistance">0.0 mm</strong>
+                </div>
+
+                <div class="result-card">
+                    <span>소요 시간</span>
+                    <strong id="finalTime">0.0 s</strong>
+                </div>
+
+                <div class="result-card">
+                    <span>평균 이동 속도</span>
+                    <strong id="finalSpeed">0.0 mm/s</strong>
+                </div>
+
+            </div>
+
+
+            <div class="analysis-box">
+
+                <h3>시뮬레이션 해석</h3>
+
+                <ul>
+                    <li>시금치 잎의 녹색 조직이 감소하면서 잎맥 구조가 상대적으로 드러났습니다.</li>
+                    <li>잎맥은 중심 구조에서 여러 방향으로 분지되는 네트워크를 형성합니다.</li>
+                    <li>색소는 모델상 잎맥을 따라 이동하도록 구현되었습니다.</li>
+                    <li>잎맥의 분지 구조는 액체가 여러 경로로 이동할 수 있는 네트워크 구조를 보여줍니다.</li>
+                </ul>
+
+            </div>
+
+
+            <div class="scientific-note">
+
+                <strong>⚠ 과학적 주의</strong>
+
+                <p>
+                    이 시뮬레이션은 시금치 잎의 잎맥 구조와 액체 이동을
+                    단순화한 교육용 모델입니다. 실제 탈세포화 과정이나
+                    인간 혈관의 구조·기능을 그대로 재현하지 않습니다.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- 하단 네비게이션 -->
+    <div class="navigation">
+
+        <button
+            class="secondary-button"
+            id="prevButton"
+            disabled
+        >
+            ← 이전
+        </button>
+
+        <div class="step-indicator">
+            <span id="currentStep">1</span>
+            /
+            <span>5</span>
+        </div>
+
+        <button
+            class="primary-button"
+            id="nextButton"
+        >
+            다음 단계 →
+        </button>
+
+    </div>
+
+</main>
+
+
+<footer>
+    <p>
+        Educational Simulation · Spinach Vascular Scaffold
+    </p>
+</footer>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
