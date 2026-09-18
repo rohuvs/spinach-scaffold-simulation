@@ -1,1428 +1,1666 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --green-900: #183b2a;
+    --green-800: #245238;
+    --green-700: #316b49;
+    --green-600: #43845c;
+    --green-500: #5d9b72;
+    --green-100: #edf5ef;
+    --green-50: #f6faf7;
+
+    --ink: #1d2922;
+    --muted: #68766e;
+
+    --line: #dfe7e1;
+
+    --paper: #ffffff;
+    --background: #f5f7f5;
+
+    --red: #c9535f;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        "Noto Sans KR",
+        sans-serif;
 
-    <title>Spinach Vascular Scaffold | Research Simulation</title>
+    color: var(--ink);
+    background: var(--background);
+    line-height: 1.6;
+}
 
-    <link rel="stylesheet" href="style.css">
-</head>
 
-<body>
+/* =========================
+   HEADER
+========================= */
 
-<header class="site-header">
-    <div class="header-inner">
+.header {
+    background: var(--paper);
+    border-bottom: 1px solid var(--line);
+}
 
-        <div class="brand">
-            <div class="brand-mark">S</div>
+.header-inner {
+    max-width: 1180px;
+    margin: auto;
+    padding: 22px 30px;
 
-            <div>
-                <div class="brand-title">
-                    SPINACH VASCULAR SCAFFOLD
-                </div>
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 
-                <div class="brand-subtitle">
-                    Interactive Research Simulation
-                </div>
-            </div>
-        </div>
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+}
 
-        <div class="header-meta">
-            Tissue Engineering · Bioengineering
-        </div>
+.logo-mark {
+    width: 42px;
+    height: 42px;
 
-    </div>
-</header>
+    border-radius: 11px;
 
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-<main class="main-container">
+    background: var(--green-900);
+    color: white;
 
-    <!-- INTRO -->
-    <section class="intro-section">
+    font-weight: 800;
+    font-size: 18px;
+}
 
-        <div class="eyebrow">
-            EXPERIMENT-BASED SIMULATION
-        </div>
+.logo h1 {
+    font-size: 17px;
+    line-height: 1.2;
+    color: var(--green-900);
+}
 
-        <h1>
-            시금치 잎을 이용한<br>
-            인공 혈관 스캐폴드 제작 및 기능 모사
-        </h1>
+.logo p {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 2px;
+}
 
-        <p class="intro-description">
-            시금치 잎의 세포 성분을 제거하여 잎맥 구조를
-            식물 유래 지지체로 모델링하고, 분지형 네트워크를
-            통한 유체 이동을 관찰하는 교육용 연구 시뮬레이션입니다.
-        </p>
+.header-tag {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
 
-        <div class="research-question">
+    color: var(--green-700);
+    background: var(--green-100);
 
-            <span class="question-label">
-                RESEARCH QUESTION
-            </span>
+    padding: 7px 10px;
+    border-radius: 7px;
+}
 
-            <p>
-                시금치 잎의 복잡한 잎맥 네트워크를
-                혈관 조직공학을 위한 구조적 모델로 활용할 수 있는가?
-            </p>
 
-        </div>
+/* =========================
+   CONTAINER
+========================= */
 
-    </section>
+.container {
+    max-width: 1180px;
+    margin: auto;
+    padding: 42px 30px 70px;
+}
 
 
-    <!-- PROGRESS -->
-    <section class="progress-section">
+/* =========================
+   PROGRESS
+========================= */
 
-        <div class="progress-track">
-            <div class="progress-fill" id="progressFill"></div>
-        </div>
+.progress {
+    max-width: 820px;
+    margin: 0 auto 42px;
 
-        <div class="progress-steps">
+    position: relative;
+}
 
-            <button class="progress-step active" data-step="1">
-                <span class="progress-number">01</span>
-                <span class="progress-name">구조 관찰</span>
-            </button>
+.progress-track {
+    position: absolute;
 
-            <button class="progress-step" data-step="2">
-                <span class="progress-number">02</span>
-                <span class="progress-name">탈세포화</span>
-            </button>
+    top: 17px;
+    left: 10%;
+    width: 80%;
 
-            <button class="progress-step" data-step="3">
-                <span class="progress-number">03</span>
-                <span class="progress-name">구조 분석</span>
-            </button>
+    height: 2px;
 
-            <button class="progress-step" data-step="4">
-                <span class="progress-number">04</span>
-                <span class="progress-name">관류 실험</span>
-            </button>
+    background: var(--line);
+}
 
-            <button class="progress-step" data-step="5">
-                <span class="progress-number">05</span>
-                <span class="progress-name">결과 분석</span>
-            </button>
+#progressFill {
+    width: 0%;
+    height: 100%;
 
-        </div>
+    background: var(--green-600);
 
-    </section>
+    transition: width 0.4s ease;
+}
 
+.progress-steps {
+    position: relative;
 
-    <!-- EXPERIMENT -->
-    <section class="experiment-container">
+    display: flex;
+    justify-content: space-between;
+}
 
+.progress-step {
+    border: none;
+    background: transparent;
 
-        <!-- STEP 1 -->
-        <article class="experiment-step active" id="step1">
+    cursor: pointer;
 
-            <div class="step-header">
-
-                <div class="step-number">
-                    STEP 01
-                </div>
-
-                <h2>
-                    시금치 잎 구조 관찰
-                </h2>
-
-                <p>
-                    탈세포화 이전의 시금치 잎에서
-                    세포 조직과 잎맥의 계층적 분지 구조를 관찰합니다.
-                </p>
-
-            </div>
-
-
-            <div class="content-grid">
-
-                <div class="visual-card">
-
-                    <div class="card-label">
-                        INITIAL STRUCTURE
-                    </div>
-
-                    <div class="leaf-stage">
-
-                        <svg
-                            viewBox="0 0 600 460"
-                            class="leaf-svg"
-                            aria-label="시금치 잎 구조">
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
-                            <path
-                                class="leaf-body"
-                                d="
-                                M95 270
-                                C70 190 125 85 260 65
-                                C390 45 535 125 510 250
-                                C485 375 320 425 190 365
-                                C135 340 105 305 95 270 Z
-                                "
-                            />
+    gap: 6px;
 
-                            <path
-                                class="leaf-vein main-vein"
-                                d="
-                                M95 280
-                                C200 260 310 225 505 175
-                                "
-                            />
+    color: #9ba79f;
+}
 
-                            <path
-                                class="leaf-vein primary-vein"
-                                d="M160 265 C145 210 135 155 120 115"
-                            />
+.progress-step span {
+    width: 35px;
+    height: 35px;
 
-                            <path
-                                class="leaf-vein primary-vein"
-                                d="M205 252 C195 195 190 135 185 90"
-                            />
+    border-radius: 50%;
 
-                            <path
-                                class="leaf-vein primary-vein"
-                                d="M250 240 C250 180 250 120 255 75"
-                            />
+    background: #e7ece8;
 
-                            <path
-                                class="leaf-vein primary-vein"
-                                d="M300 225 C315 165 335 115 360 75"
-                            />
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-                            <path
-                                class="leaf-vein primary-vein"
-                                d="M350 212 C385 165 420 125 460 105"
-                            />
+    font-size: 11px;
+    font-weight: 800;
 
-                            <path
-                                class="leaf-vein primary-vein"
-                                d="M160 265 C145 305 130 335 115 355"
-                            />
+    transition: 0.3s;
+}
 
-                            <path
-                                class="leaf-vein primary-vein"
-                                d="M205 252 C190 300 180 345 175 375"
-                            />
+.progress-step small {
+    font-size: 10px;
+    font-weight: 600;
+}
 
-                            <path
-                                class="leaf-vein primary-vein"
-                                d="M250 240 C250 295 250 350 245 390"
-                            />
+.progress-step.active {
+    color: var(--green-700);
+}
 
-                            <path
-                                class="leaf-vein primary-vein"
-                                d="M300 225 C315 280 330 330 350 365"
-                            />
+.progress-step.active span {
+    background: var(--green-700);
+    color: white;
 
-                            <path
-                                class="leaf-vein primary-vein"
-                                d="M350 212 C385 260 420 295 455 315"
-                            />
+    box-shadow: 0 0 0 5px var(--green-100);
+}
 
-                            <path
-                                class="secondary-vein"
-                                d="M145 210 C120 195 105 180 95 165"
-                            />
+.progress-step.completed span {
+    background: var(--green-800);
+    color: white;
+}
 
-                            <path
-                                class="secondary-vein"
-                                d="M195 190 C165 175 145 155 130 140"
-                            />
 
-                            <path
-                                class="secondary-vein"
-                                d="M255 175 C225 155 205 135 190 115"
-                            />
+/* =========================
+   SCREEN
+========================= */
 
-                            <path
-                                class="secondary-vein"
-                                d="M315 155 C345 140 370 125 390 105"
-                            />
+.screen {
+    display: none;
 
-                            <path
-                                class="secondary-vein"
-                                d="M375 190 C410 180 445 165 470 145"
-                            />
+    background: var(--paper);
 
-                        </svg>
+    border: 1px solid var(--line);
 
-                    </div>
+    border-radius: 20px;
 
-                </div>
+    padding: 42px;
 
+    box-shadow:
+        0 10px 35px rgba(30, 55, 40, 0.045);
+}
 
-                <aside class="science-card">
+.screen.active {
+    display: block;
 
-                    <div class="card-label">
-                        OBSERVATION
-                    </div>
+    animation: screenIn 0.4s ease;
+}
 
-                    <h3>
-                        관찰 대상
-                    </h3>
+@keyframes screenIn {
 
-                    <div class="data-list">
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
 
-                        <div class="data-item">
-                            <span>잎 조직</span>
-                            <strong>세포 조직 존재</strong>
-                        </div>
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
-                        <div class="data-item">
-                            <span>중심맥</span>
-                            <strong>주요 운반 경로</strong>
-                        </div>
 
-                        <div class="data-item">
-                            <span>측맥</span>
-                            <strong>반복적 분지</strong>
-                        </div>
+/* =========================
+   HEADING
+========================= */
 
-                        <div class="data-item">
-                            <span>전체 구조</span>
-                            <strong>네트워크형</strong>
-                        </div>
+.screen-heading {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
 
-                    </div>
+    margin-bottom: 35px;
+}
 
+.eyebrow {
+    color: var(--green-600);
 
-                    <div class="concept-box">
+    font-size: 10px;
+    font-weight: 800;
 
-                        <span>KEY CONCEPT</span>
+    letter-spacing: 0.12em;
 
-                        <strong>
-                            Biomimicry
-                        </strong>
+    margin-bottom: 11px;
+}
 
-                        <p>
-                            생물학적 구조와 기능에서 영감을 얻어
-                            공학적 시스템을 설계하는 접근입니다.
-                        </p>
+.screen-heading h2 {
+    color: var(--green-900);
 
-                    </div>
+    font-size: 30px;
+    line-height: 1.25;
 
-                </aside>
+    letter-spacing: -0.03em;
 
-            </div>
+    margin-bottom: 15px;
+}
 
+.screen-heading p {
+    max-width: 680px;
 
-            <div class="science-note">
+    color: var(--muted);
 
-                <span class="note-tag">
-                    EXPERIMENT
-                </span>
+    font-size: 14px;
+}
 
-                <p>
-                    실제 실험에서는 탈세포화 전후의 잎을 육안 및
-                    현미경으로 관찰하여 조직의 변화와 잎맥 구조의
-                    보존 여부를 비교할 수 있습니다.
-                </p>
 
-            </div>
+.research-note {
+    min-width: 240px;
 
-        </article>
+    border-left: 2px solid var(--green-500);
 
+    padding: 7px 0 7px 18px;
 
-        <!-- STEP 2 -->
-        <article class="experiment-step" id="step2">
+    align-self: flex-start;
+}
 
-            <div class="step-header">
+.research-note span {
+    display: block;
 
-                <div class="step-number">
-                    STEP 02
-                </div>
+    font-size: 9px;
+    font-weight: 800;
 
-                <h2>
-                    탈세포화
-                </h2>
+    letter-spacing: 0.12em;
 
-                <p>
-                    세포 성분을 제거하면서 잎맥의 구조적 지지체를
-                    상대적으로 보존하는 과정을 모델링합니다.
-                </p>
+    color: var(--green-600);
 
-            </div>
+    margin-bottom: 8px;
+}
 
+.research-note strong {
+    font-size: 13px;
 
-            <div class="process-layout">
+    line-height: 1.65;
 
-                <div class="process-panel">
+    color: var(--green-900);
+}
 
-                    <div class="card-label">
-                        DECELLULARIZATION PROCESS
-                    </div>
 
-                    <div class="process-flow">
+/* =========================
+   LAYOUT
+========================= */
 
-                        <div class="process-node active-node">
-                            <span class="node-number">01</span>
-                            <strong>시금치 잎 준비</strong>
-                            <small>식물 조직</small>
-                        </div>
+.two-column {
+    display: grid;
 
-                        <div class="process-arrow">↓</div>
+    grid-template-columns:
+        minmax(0, 1.55fr)
+        minmax(280px, 0.8fr);
 
-                        <div class="process-node">
-                            <span class="node-number">02</span>
-                            <strong>계면활성제 처리</strong>
-                            <small>세포 성분 제거</small>
-                        </div>
+    gap: 22px;
+}
 
-                        <div class="process-arrow">↓</div>
+.decell-layout {
+    display: grid;
 
-                        <div class="process-node">
-                            <span class="node-number">03</span>
-                            <strong>세척</strong>
-                            <small>잔류 성분 제거</small>
-                        </div>
+    grid-template-columns:
+        minmax(0, 1.25fr)
+        minmax(320px, 0.75fr);
 
-                        <div class="process-arrow">↓</div>
+    gap: 22px;
+}
 
-                        <div class="process-node">
-                            <span class="node-number">04</span>
-                            <strong>식물 유래 지지체</strong>
-                            <small>잎맥 구조</small>
-                        </div>
+.analysis-layout {
+    display: grid;
 
-                    </div>
+    grid-template-columns:
+        minmax(0, 1.25fr)
+        minmax(300px, 0.75fr);
 
-                </div>
+    gap: 22px;
+}
 
+.flow-layout {
+    display: grid;
 
-                <div class="science-card large-card">
+    grid-template-columns:
+        minmax(0, 1.35fr)
+        minmax(300px, 0.65fr);
 
-                    <div class="card-label">
-                        MATERIALS & MECHANISM
-                    </div>
+    gap: 22px;
+}
 
-                    <div class="material-block">
 
-                        <div class="material-title">
-                            SDS
-                        </div>
+/* =========================
+   CARDS
+========================= */
 
-                        <p>
-                            Sodium dodecyl sulfate는 음이온성 계면활성제로,
-                            탈세포화 연구에서 세포막과 세포 성분을 제거하는
-                            데 사용될 수 있습니다.
-                        </p>
+.visual-card,
+.info-card,
+.process-panel,
+.theory-panel,
+.flow-control,
+.result-card,
+.research-section,
+.final-conclusion,
+.references {
+    border: 1px solid var(--line);
+    border-radius: 15px;
+    background: var(--paper);
+}
 
-                    </div>
+.visual-card {
+    overflow: hidden;
+}
 
+.card-header {
+    height: 45px;
 
-                    <div class="material-block">
+    padding: 0 18px;
 
-                        <div class="material-title">
-                            TRITON X-100
-                        </div>
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-                        <p>
-                            Triton X-100은 비이온성 계면활성제로,
-                            세포 성분 및 지질 제거를 위한 탈세포화 연구에서
-                            활용됩니다. 실제 처리 조건은 조직과 연구 목적에 따라 달라집니다.
-                        </p>
+    border-bottom: 1px solid var(--line);
 
-                    </div>
+    color: var(--muted);
 
+    font-size: 9px;
+    font-weight: 800;
 
-                    <div class="material-block">
+    letter-spacing: 0.1em;
+}
 
-                        <div class="material-title">
-                            DECELLULARIZATION
-                        </div>
+.info-card {
+    padding: 25px;
+}
 
-                        <p>
-                            핵심 목적은 모든 구조를 제거하는 것이 아니라
-                            세포 성분을 감소시키면서 원하는 구조적 특성을
-                            가능한 한 보존하는 것입니다.
-                        </p>
+.section-label {
+    color: var(--green-600);
 
-                    </div>
+    font-size: 9px;
+    font-weight: 800;
 
-                </div>
+    letter-spacing: 0.12em;
 
-            </div>
+    margin-bottom: 15px;
+}
 
 
-            <div class="simulation-control">
+/* =========================
+   LEAF
+========================= */
 
-                <div class="control-info">
+.leaf-card {
+    background: var(--green-50);
+}
 
-                    <span>
-                        SIMULATION PROGRESS
-                    </span>
+.leaf-svg {
+    width: 100%;
+    height: 440px;
+    display: block;
+}
 
-                    <strong id="decellPercent">
-                        0%
-                    </strong>
+.leaf-surface {
+    fill: #789e6c;
+    stroke: #547a51;
+    stroke-width: 2;
+}
 
-                </div>
+.vein {
+    fill: none;
 
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
 
-                <div class="simulation-bar">
+.vein.main {
+    stroke: #dbe8d3;
+    stroke-width: 10;
+}
 
-                    <div
-                        class="simulation-bar-fill"
-                        id="decellBar">
-                    </div>
+.vein.branch {
+    stroke: #cbdcc3;
+    stroke-width: 5;
+}
 
-                </div>
 
+/* =========================
+   INFO
+========================= */
 
-                <p id="decellStatus">
-                    탈세포화 시뮬레이션을 시작하세요.
-                </p>
+.metric {
+    display: flex;
 
+    justify-content: space-between;
+    align-items: center;
 
-                <button
-                    class="primary-button"
-                    id="decellButton">
-                    탈세포화 시작
-                </button>
+    padding: 13px 0;
 
-            </div>
+    border-bottom: 1px solid var(--line);
 
+    font-size: 12px;
+}
 
-            <div class="mechanism-box">
+.metric span {
+    color: var(--muted);
+}
 
-                <div class="mechanism-title">
-                    SCIENTIFIC MECHANISM
-                </div>
+.metric strong {
+    color: var(--green-800);
+}
 
-                <div class="mechanism-grid">
+.divider {
+    height: 1px;
+    background: var(--line);
 
-                    <div>
-                        <strong>Cell membrane</strong>
-                        <p>
-                            계면활성제와의 상호작용을 통해
-                            세포막 및 세포 성분이 제거됩니다.
-                        </p>
-                    </div>
+    margin: 23px 0;
+}
 
-                    <div>
-                        <strong>Structural network</strong>
-                        <p>
-                            세포 성분이 감소하면서 잎맥의
-                            공간적 네트워크가 상대적으로 드러납니다.
-                        </p>
-                    </div>
+.info-card h3 {
+    font-size: 15px;
+    color: var(--green-900);
 
-                    <div>
-                        <strong>Plant-derived scaffold</strong>
-                        <p>
-                            탈세포화된 식물 조직의 구조는
-                            식물 유래 스캐폴드 연구에 활용될 수 있습니다.
-                        </p>
-                    </div>
+    margin-bottom: 12px;
+}
 
-                </div>
+.info-card p {
+    color: var(--muted);
+    font-size: 12px;
 
-            </div>
+    margin-bottom: 11px;
+}
 
-        </article>
+.concept {
+    margin-top: 20px;
 
+    padding: 13px;
 
-        <!-- STEP 3 -->
-        <article class="experiment-step" id="step3">
+    border-radius: 10px;
 
-            <div class="step-header">
+    background: var(--green-100);
+}
 
-                <div class="step-number">
-                    STEP 03
-                </div>
+.concept span {
+    display: block;
 
-                <h2>
-                    탈세포화 후 구조 분석
-                </h2>
+    color: var(--green-600);
 
-                <p>
-                    탈세포화 전후의 조직 상태를 비교하고,
-                    스캐폴드의 구조적 특징과 한계를 분석합니다.
-                </p>
+    font-size: 8px;
+    font-weight: 800;
 
-            </div>
+    letter-spacing: 0.1em;
+}
 
+.concept strong {
+    display: block;
 
-            <div class="before-after">
+    margin-top: 3px;
 
-                <div class="structure-card">
+    color: var(--green-900);
 
-                    <div class="structure-header">
-                        <span>BEFORE</span>
-                        <strong>탈세포화 전</strong>
-                    </div>
+    font-size: 13px;
+}
 
-                    <div class="structure-visual">
 
-                        <div class="cell-layer">
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                        </div>
+/* =========================
+   DECELL
+========================= */
 
-                        <div class="network-lines">
-                            <i></i>
-                            <i></i>
-                            <i></i>
-                            <i></i>
-                            <i></i>
-                        </div>
+.decell-visual {
+    height: 440px;
 
-                    </div>
+    position: relative;
 
-                    <p>
-                        세포 조직과 잎맥 구조가 함께 존재합니다.
-                    </p>
+    background: var(--green-50);
 
-                </div>
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
+.decell-visual svg {
+    width: 100%;
+    height: 100%;
+}
 
-                <div class="comparison-arrow">
-                    →
-                </div>
+#decellLeaf {
+    transition:
+        fill 0.2s linear,
+        opacity 0.2s linear;
+}
 
+.cell-layer {
+    position: absolute;
 
-                <div class="structure-card">
+    left: 50%;
+    top: 50%;
 
-                    <div class="structure-header">
-                        <span>AFTER</span>
-                        <strong>탈세포화 후</strong>
-                    </div>
+    transform: translate(-50%, -50%);
 
-                    <div class="structure-visual scaffold-visual">
+    pointer-events: none;
 
-                        <div class="network-lines">
-                            <i></i>
-                            <i></i>
-                            <i></i>
-                            <i></i>
-                            <i></i>
-                        </div>
+    color: rgba(255,255,255,0.85);
 
-                    </div>
+    font-size: 10px;
+    font-weight: 800;
 
-                    <p>
-                        세포 성분이 감소하고 잎맥 네트워크가
-                        상대적으로 뚜렷하게 드러나는 모델입니다.
-                    </p>
+    letter-spacing: 0.08em;
 
-                </div>
+    transition: opacity 0.3s;
+}
 
-            </div>
+.process-panel {
+    padding: 20px;
+}
 
+.process-stage {
+    display: grid;
 
-            <div class="analysis-grid">
+    grid-template-columns: 34px 1fr;
 
-                <div class="science-card">
+    gap: 12px;
 
-                    <div class="card-label">
-                        STRUCTURAL ANALYSIS
-                    </div>
+    padding: 14px 0;
 
-                    <h3>
-                        무엇이 보존되어야 하는가?
-                    </h3>
+    border-bottom: 1px solid var(--line);
+}
 
-                    <ul class="science-list">
+.stage-number {
+    width: 27px;
+    height: 27px;
 
-                        <li>
-                            <strong>중심맥</strong>
-                            <span>주요 유체 이동 경로</span>
-                        </li>
+    border-radius: 50%;
 
-                        <li>
-                            <strong>측맥</strong>
-                            <span>반복적인 분지 구조</span>
-                        </li>
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-                        <li>
-                            <strong>연결성</strong>
-                            <span>네트워크가 끊어지지 않는 정도</span>
-                        </li>
+    background: var(--green-100);
 
-                        <li>
-                            <strong>공간 구조</strong>
-                            <span>채널의 공간적 배열</span>
-                        </li>
+    color: var(--green-700);
 
-                    </ul>
+    font-size: 9px;
+    font-weight: 800;
+}
 
-                </div>
+.process-stage strong {
+    display: block;
 
+    color: var(--green-900);
 
-                <div class="science-card">
+    font-size: 12px;
 
-                    <div class="card-label">
-                        EXTRACELLULAR MATRIX
-                    </div>
+    margin-bottom: 3px;
+}
 
-                    <h3>
-                        ECM과 Scaffold
-                    </h3>
+.process-stage p {
+    color: var(--muted);
 
-                    <p class="long-text">
+    font-size: 10px;
 
-                        조직공학에서는 세포가 주변 환경과 상호작용할 수 있는
-                        구조적·화학적 환경이 중요합니다.
+    line-height: 1.55;
+}
 
-                        <br><br>
+.materials {
+    margin-top: 20px;
+}
 
-                        식물 유래 스캐폴드 연구에서는 탈세포화 과정 이후
-                        남은 구조와 셀룰로오스가 물리적인 지지체 역할을
-                        할 가능성을 탐구합니다.
+.material-row {
+    padding: 9px 0;
 
-                        <br><br>
+    border-bottom: 1px solid var(--line);
+}
 
-                        다만 식물 유래 셀룰로오스와 인간 세포의 상호작용은
-                        실제 적용 전에 별도의 세포 부착 및 생체적합성 검증이 필요합니다.
+.material-row span {
+    display: block;
 
-                    </p>
+    color: var(--green-800);
 
-                </div>
+    font-weight: 700;
 
-            </div>
+    font-size: 11px;
+}
 
+.material-row small {
+    display: block;
 
-            <div class="limitation-box">
+    color: var(--muted);
 
-                <div class="limitation-title">
-                    RESEARCH LIMITATION
-                </div>
+    font-size: 9px;
 
-                <p>
-                    탈세포화가 완료되었다고 해서 실제 인간 혈관과 동일한
-                    생물학적 기능이 확보되는 것은 아닙니다.
-                    혈액적합성, 세포 부착, 표면 특성, 기계적 안정성,
-                    혈전 형성 가능성 등은 각각 별도의 검증이 필요합니다.
-                </p>
+    line-height: 1.5;
 
-            </div>
+    margin-top: 2px;
+}
 
-        </article>
+.decell-control {
+    margin-top: 20px;
 
+    padding-top: 20px;
 
-        <!-- STEP 4 -->
-        <article class="experiment-step" id="step4">
+    border-top: 1px solid var(--line);
+}
 
-            <div class="step-header">
+.progress-title {
+    display: flex;
+    justify-content: space-between;
 
-                <div class="step-number">
-                    STEP 04
-                </div>
+    font-size: 9px;
+    font-weight: 800;
 
-                <h2>
-                    분지형 네트워크 관류 실험
-                </h2>
+    color: var(--muted);
 
-                <p>
-                    색소가 하나의 직선 경로가 아니라 잎맥의 분지점에서
-                    여러 방향으로 분배되는 과정을 시뮬레이션합니다.
-                </p>
+    margin-bottom: 7px;
+}
 
-            </div>
+.progress-title strong {
+    color: var(--green-600);
+}
 
+.progress-bar {
+    width: 100%;
+    height: 8px;
 
-            <div class="flow-layout">
+    background: #e7ece8;
 
-                <div class="flow-card">
+    border-radius: 20px;
 
-                    <div class="flow-card-header">
+    overflow: hidden;
+}
 
-                        <div>
+#decellBar {
+    width: 0%;
+    height: 100%;
 
-                            <div class="card-label">
-                                MICROFLUIDIC FLOW MODEL
-                            </div>
+    background: var(--green-600);
 
-                            <h3>
-                                Leaf Vein Network
-                            </h3>
+    transition: width 0.12s linear;
+}
 
-                        </div>
+#decellStatus {
+    min-height: 35px;
 
-                        <div class="flow-status" id="flowStatus">
-                            READY
-                        </div>
+    color: var(--muted);
 
-                    </div>
+    font-size: 10px;
 
+    margin: 10px 0;
+}
 
-                    <div class="flow-canvas">
 
-                        <svg
-                            viewBox="0 0 800 520"
-                            class="flow-svg"
-                            id="flowSvg">
+/* =========================
+   BUTTONS
+========================= */
 
-                            <g class="network-background">
+.button {
+    border: none;
 
-                                <path d="M70 390 C180 380 300 345 420 300 C540 255 650 215 750 150"/>
-                                <path d="M250 350 C245 280 225 205 190 110"/>
-                                <path d="M350 325 C360 255 370 180 390 90"/>
-                                <path d="M470 285 C510 225 555 165 610 100"/>
-                                <path d="M555 250 C620 230 680 205 745 180"/>
-                                <path d="M210 365 C170 335 130 300 95 260"/>
-                                <path d="M310 340 C280 315 250 285 225 250"/>
-                                <path d="M400 310 C430 285 465 260 495 220"/>
-                                <path d="M500 270 C535 300 570 330 610 350"/>
-                                <path d="M580 235 C625 270 670 295 720 315"/>
+    border-radius: 9px;
 
-                            </g>
+    padding: 12px 17px;
 
+    font-family: inherit;
 
-                            <g class="network-main">
+    font-size: 12px;
+    font-weight: 700;
 
-                                <path
-                                    class="flow-path"
-                                    d="M70 390 C180 380 300 345 420 300 C540 255 650 215 750 150"
-                                />
+    cursor: pointer;
 
-                                <path
-                                    class="flow-path branch"
-                                    d="M250 350 C245 280 225 205 190 110"
-                                />
+    transition:
+        transform 0.2s,
+        opacity 0.2s,
+        box-shadow 0.2s;
+}
 
-                                <path
-                                    class="flow-path branch"
-                                    d="M350 325 C360 255 370 180 390 90"
-                                />
+.button.primary {
+    background: var(--green-800);
+    color: white;
+}
 
-                                <path
-                                    class="flow-path branch"
-                                    d="M470 285 C510 225 555 165 610 100"
-                                />
+.button.primary:hover:not(:disabled) {
+    transform: translateY(-1px);
 
-                                <path
-                                    class="flow-path branch"
-                                    d="M555 250 C620 230 680 205 745 180"
-                                />
+    box-shadow:
+        0 6px 15px rgba(36, 82, 56, 0.16);
+}
 
-                                <path
-                                    class="flow-path branch"
-                                    d="M210 365 C170 335 130 300 95 260"
-                                />
+.button.secondary {
+    background: #e9eeea;
+    color: var(--green-800);
+}
 
-                                <path
-                                    class="flow-path branch"
-                                    d="M310 340 C280 315 250 285 225 250"
-                                />
+.button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
 
-                                <path
-                                    class="flow-path branch"
-                                    d="M400 310 C430 285 465 260 495 220"
-                                />
+.decell-control .button {
+    width: 100%;
+}
 
-                                <path
-                                    class="flow-path branch"
-                                    d="M500 270 C535 300 570 330 610 350"
-                                />
 
-                                <path
-                                    class="flow-path branch"
-                                    d="M580 235 C625 270 670 295 720 315"
-                                />
+/* =========================
+   SCIENCE BOX
+========================= */
 
-                            </g>
+.science-box {
+    margin-top: 22px;
 
+    padding: 20px;
 
-                            <g class="network-nodes">
+    background: var(--green-50);
 
-                                <circle cx="70" cy="390" r="10"/>
-                                <circle cx="210" cy="365" r="7"/>
-                                <circle cx="250" cy="350" r="8"/>
-                                <circle cx="310" cy="340" r="7"/>
-                                <circle cx="350" cy="325" r="8"/>
-                                <circle cx="400" cy="310" r="7"/>
-                                <circle cx="470" cy="285" r="8"/>
-                                <circle cx="500" cy="270" r="7"/>
-                                <circle cx="555" cy="250" r="8"/>
-                                <circle cx="580" cy="235" r="7"/>
+    border: 1px solid var(--line);
 
-                            </g>
+    border-radius: 14px;
+}
 
+.science-box p {
+    color: #536259;
 
-                            <g id="dyeParticles">
+    font-size: 12px;
 
-                                <circle class="particle" r="5"/>
-                                <circle class="particle" r="5"/>
-                                <circle class="particle" r="5"/>
-                                <circle class="particle" r="5"/>
-                                <circle class="particle" r="5"/>
-                                <circle class="particle" r="5"/>
-                                <circle class="particle" r="5"/>
-                                <circle class="particle" r="5"/>
-                                <circle class="particle" r="5"/>
+    line-height: 1.75;
+}
 
-                            </g>
+.formula {
+    margin-top: 15px;
 
+    padding: 14px;
 
-                            <circle
-                                id="injectionPoint"
-                                cx="70"
-                                cy="390"
-                                r="16"
-                                class="injection-point"
-                            />
+    border-radius: 9px;
 
-                        </svg>
+    background: white;
 
+    border: 1px solid var(--line);
 
-                        <div class="flow-legend">
+    color: var(--green-900);
 
-                            <span>
-                                <i class="legend-inlet"></i>
-                                주입 위치
-                            </span>
+    text-align: center;
 
-                            <span>
-                                <i class="legend-vein"></i>
-                                잎맥
-                            </span>
+    font-family: Georgia, serif;
 
-                            <span>
-                                <i class="legend-particle"></i>
-                                색소
-                            </span>
+    font-size: 21px;
+}
 
-                        </div>
+.science-box small {
+    display: block;
 
-                    </div>
+    margin-top: 8px;
 
+    color: var(--muted);
 
-                    <div class="flow-controls">
+    font-size: 9px;
+}
 
-                        <button
-                            class="primary-button"
-                            id="flowButton">
-                            색소 주입 및 관류 시작
-                        </button>
 
-                    </div>
+/* =========================
+   STEP 3
+========================= */
 
-                </div>
+.before-after {
+    min-height: 430px;
 
+    padding: 25px;
 
-                <aside class="flow-data-card">
+    background: var(--green-50);
 
-                    <div class="card-label">
-                        REAL-TIME PARAMETERS
-                    </div>
+    display: grid;
 
-                    <div class="parameter">
-                        <span>경과 시간</span>
-                        <strong id="timeValue">0.0 s</strong>
-                    </div>
+    grid-template-columns: 1fr 40px 1fr;
 
-                    <div class="parameter">
-                        <span>이동 거리</span>
-                        <strong id="distanceValue">0.0 mm</strong>
-                    </div>
+    align-items: center;
 
-                    <div class="parameter">
-                        <span>평균 속도</span>
-                        <strong id="speedValue">0.0 mm/s</strong>
-                    </div>
+    gap: 10px;
 
-                    <div class="parameter">
-                        <span>분지 경로</span>
-                        <strong id="branchValue">0 / 10</strong>
-                    </div>
+    text-align: center;
+}
 
+.before-after svg {
+    width: 100%;
+}
 
-                    <div class="formula-card">
+.mini-title {
+    color: var(--green-600);
 
-                        <div>
-                            FLOW VELOCITY
-                        </div>
+    font-size: 9px;
+    font-weight: 800;
 
-                        <strong>
-                            v = d / t
-                        </strong>
+    letter-spacing: 0.1em;
 
-                        <p>
-                            이동 거리와 시간을 이용해
-                            평균 이동 속도를 계산합니다.
-                        </p>
+    margin-bottom: 5px;
+}
 
-                    </div>
+.before-after p {
+    color: var(--muted);
 
+    font-size: 10px;
+}
 
-                    <div class="theory-card">
+.comparison-arrow {
+    color: var(--green-600);
 
-                        <div class="theory-label">
-                            FLUID DYNAMICS
-                        </div>
+    font-size: 25px;
+}
 
-                        <strong>
-                            Hagen–Poiseuille Law
-                        </strong>
+.scaffold-outline {
+    fill: none;
 
-                        <p>
-                            이상적인 원통형 관에서 유량이
-                            관의 반지름과 압력 차이에 의해
-                            어떻게 달라지는지 설명하는 모델입니다.
-                        </p>
+    stroke: #c5d3c7;
 
-                    </div>
+    stroke-width: 2;
+}
 
-                </aside>
+.scaffold-main {
+    stroke: #78977e !important;
+    stroke-width: 7 !important;
+}
 
-            </div>
+.scaffold {
+    stroke: #91a98f !important;
+    stroke-width: 4 !important;
+}
 
+.theory-panel {
+    padding: 20px;
+}
 
-            <div class="flow-theory-grid">
+.theory-card {
+    display: grid;
 
-                <div class="science-card">
+    grid-template-columns: 35px 1fr;
 
-                    <div class="card-label">
-                        MICROFLUIDICS
-                    </div>
+    gap: 12px;
 
-                    <h3>
-                        미세유체 관류
-                    </h3>
+    padding: 15px 0;
 
-                    <p class="long-text">
-                        미세한 채널 내부에서 유체의 흐름을 제어하고
-                        관찰하는 분야입니다.
+    border-bottom: 1px solid var(--line);
+}
 
-                        <br><br>
+.theory-number {
+    width: 28px;
+    height: 28px;
 
-                        조직공학에서는 스캐폴드 내부로 유체를 공급하기 위해
-                        관류 시스템을 사용할 수 있습니다.
-                    </p>
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-                </div>
+    background: var(--green-100);
 
+    color: var(--green-700);
 
-                <div class="science-card">
+    border-radius: 7px;
 
-                    <div class="card-label">
-                        FLOW CONTROL
-                    </div>
+    font-size: 9px;
+    font-weight: 800;
+}
 
-                    <h3>
-                        Syringe Pump
-                    </h3>
+.theory-card h3 {
+    color: var(--green-900);
 
-                    <p class="long-text">
-                        주사기 펌프는 설정된 조건에서 비교적 일정한 유량을
-                        만드는 연구 장비로 활용될 수 있습니다.
+    font-size: 13px;
 
-                        <br><br>
+    margin-bottom: 5px;
+}
 
-                        실제 잎맥은 직경과 분지 형태가 균일하지 않기 때문에
-                        모든 분지에 동일한 유량이 흐른다고 가정할 수 없습니다.
-                    </p>
+.theory-card p {
+    color: var(--muted);
 
-                </div>
+    font-size: 10px;
 
+    line-height: 1.65;
+}
 
-                <div class="science-card">
+.limitation {
+    margin-top: 18px;
 
-                    <div class="card-label">
-                        MODEL LIMITATION
-                    </div>
+    padding: 14px;
 
-                    <h3>
-                        압력 불균형
-                    </h3>
+    border-radius: 10px;
 
-                    <p class="long-text">
-                        비대칭적인 분지 네트워크에서는 각 경로의
-                        유체 저항이 달라질 수 있습니다.
+    background: #faf8f3;
 
-                        <br><br>
+    border: 1px solid #e8e1d3;
+}
 
-                        연구 수준에서는 다채널 유량 분배 장치나 밸브 등을
-                        이용한 흐름 제어를 고려할 수 있습니다.
-                    </p>
+.limitation strong {
+    display: block;
 
-                </div>
+    color: #756b59;
 
-            </div>
+    font-size: 9px;
 
-        </article>
+    letter-spacing: 0.1em;
 
+    margin-bottom: 5px;
+}
 
-        <!-- STEP 5 -->
-        <article class="experiment-step" id="step5">
+.limitation p {
+    color: #817a6e;
 
-            <div class="step-header">
+    font-size: 9px;
 
-                <div class="step-number">
-                    STEP 05
-                </div>
+    line-height: 1.6;
+}
 
-                <h2>
-                    결과 및 조직공학적 분석
-                </h2>
 
-                <p>
-                    시뮬레이션 결과를 바탕으로 식물 유래 스캐폴드,
-                    탈세포화, 유체역학, 생체모방의 관계를 종합적으로 분석합니다.
-                </p>
+/* =========================
+   FLOW
+========================= */
 
-            </div>
+.flow-card {
+    background: #fafcfb;
+}
 
+#vascularNetwork {
+    width: 100%;
+    height: 500px;
 
-            <div class="result-summary">
+    display: block;
 
-                <div class="result-item">
-                    <span>DECELLULARIZATION</span>
-                    <strong>
-                        <span id="finalDecell">0</span>%
-                    </strong>
-                </div>
+    background:
+        radial-gradient(
+            circle at center,
+            #f9fcfa 0%,
+            #f3f8f4 100%
+        );
+}
 
-                <div class="result-item">
-                    <span>VASCULAR BRANCHES</span>
-                    <strong id="finalBranches">0</strong>
-                </div>
+.network-vessel {
+    fill: none;
 
-                <div class="result-item">
-                    <span>FLOW DISTANCE</span>
-                    <strong id="finalDistance">0.0 mm</strong>
-                </div>
+    stroke: #91aa94;
 
-                <div class="result-item">
-                    <span>FLOW VELOCITY</span>
-                    <strong id="finalSpeed">0.0 mm/s</strong>
-                </div>
+    stroke-width: 5;
 
-            </div>
+    stroke-linecap: round;
 
+    stroke-linejoin: round;
+}
 
-            <div class="theory-grid">
+.main-vessel {
+    stroke: #648d6a;
 
-                <div class="theory-large-card">
+    stroke-width: 9;
+}
 
-                    <div class="theory-number">01</div>
+.network-vessel.small {
+    stroke-width: 3;
+}
 
-                    <div>
+.branch-node {
+    fill: white;
 
-                        <div class="card-label">
-                            MATERIAL ENGINEERING
-                        </div>
+    stroke: #4d7957;
 
-                        <h3>
-                            Plant-derived Scaffold
-                        </h3>
+    stroke-width: 3;
+}
 
-                        <p>
-                            식물 조직의 세포 성분을 감소시키고
-                            남은 구조를 생체재료용 지지체로
-                            활용하려는 접근입니다.
+.particle {
+    fill: var(--red);
 
-                            <br><br>
+    filter:
+        drop-shadow(
+            0 2px 4px rgba(201,83,95,0.25)
+        );
 
-                            시금치 잎은 이미 형성된 복잡한 잎맥 네트워크를
-                            가지고 있기 때문에 미세한 유체 이동 경로를 가진
-                            구조적 모델로 연구될 수 있습니다.
-                        </p>
+    opacity: 0;
+}
 
-                    </div>
+.flow-legend {
+    padding: 12px 18px;
 
-                </div>
+    display: flex;
 
+    gap: 18px;
 
-                <div class="theory-large-card">
+    border-top: 1px solid var(--line);
 
-                    <div class="theory-number">02</div>
+    color: var(--muted);
 
-                    <div>
+    font-size: 9px;
+}
 
-                        <div class="card-label">
-                            TISSUE ENGINEERING
-                        </div>
+.flow-legend span {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
 
-                        <h3>
-                            Extracellular Matrix
-                        </h3>
+.legend-dot {
+    width: 8px;
+    height: 8px;
 
-                        <p>
-                            세포가 주변 환경과 상호작용하는
-                            구조적·생화학적 환경은 조직공학에서 중요합니다.
+    border-radius: 50%;
 
-                            <br><br>
+    display: inline-block;
+}
 
-                            식물 유래 셀룰로오스 기반 구조는 물리적인 지지체
-                            역할을 할 가능성이 있지만 인간 세포의 부착과
-                            기능을 확보하기 위해서는 별도의 표면 개질과
-                            생체적합성 검증이 필요합니다.
-                        </p>
+.legend-dot.inlet {
+    background: #648d6a;
+}
 
-                    </div>
+.legend-dot.branch {
+    background: white;
+    border: 2px solid #4d7957;
+}
 
-                </div>
+.legend-dot.particle {
+    background: var(--red);
+}
 
+.flow-control {
+    border: none;
 
-                <div class="theory-large-card">
+    display: flex;
 
-                    <div class="theory-number">03</div>
+    flex-direction: column;
 
-                    <div>
+    gap: 15px;
 
-                        <div class="card-label">
-                            BIOMIMETIC DESIGN
-                        </div>
+    background: transparent;
+}
 
-                        <h3>
-                            Biomimicry
-                        </h3>
+.control-card,
+.measurement-card,
+.equation-card {
+    border: 1px solid var(--line);
 
-                        <p>
-                            자연에서 관찰되는 구조적 특징을
-                            공학적 설계에 활용하는 개념입니다.
+    border-radius: 14px;
 
-                            <br><br>
+    background: white;
 
-                            시금치 잎의 중심맥과 반복적인 분지 구조를
-                            관찰함으로써 복잡한 네트워크 구조의
-                            특징을 모델링할 수 있습니다.
-                        </p>
+    padding: 20px;
+}
 
-                    </div>
+.control-card label {
+    display: block;
 
-                </div>
+    color: var(--muted);
 
+    font-size: 11px;
 
-                <div class="theory-large-card">
+    margin-bottom: 9px;
+}
 
-                    <div class="theory-number">04</div>
+.range-line {
+    display: grid;
 
-                    <div>
+    grid-template-columns: 1fr auto;
 
-                        <div class="card-label">
-                            FLUID DYNAMICS
-                        </div>
+    gap: 10px;
 
-                        <h3>
-                            Hagen–Poiseuille & Microfluidics
-                        </h3>
+    align-items: center;
 
-                        <p>
-                            미세 채널 내부의 유체 흐름을 이해하기 위해
-                            유체역학적 모델을 적용할 수 있습니다.
+    margin-bottom: 18px;
+}
 
-                            <br><br>
+input[type="range"] {
+    width: 100%;
 
-                            특히 채널 반지름의 작은 차이도 유체 저항과
-                            유량 분배에 큰 영향을 줄 수 있기 때문에
-                            실제 분지 네트워크에서는 경로별 흐름이
-                            동일하지 않을 수 있습니다.
-                        </p>
+    accent-color: var(--green-700);
 
-                    </div>
+    cursor: pointer;
+}
 
-                </div>
+.range-line strong {
+    color: var(--green-800);
 
-            </div>
+    font-size: 11px;
+}
 
+.control-card .button {
+    width: 100%;
+}
 
-            <div class="murray-section">
+.measurement {
+    display: flex;
 
-                <div class="murray-header">
+    justify-content: space-between;
 
-                    <div>
+    padding: 12px 0;
 
-                        <div class="card-label">
-                            VASCULAR NETWORK THEORY
-                        </div>
+    border-bottom: 1px solid var(--line);
+}
 
-                        <h3>
-                            Murray's Law
-                        </h3>
+.measurement:last-child {
+    border-bottom: none;
+}
 
-                    </div>
+.measurement span {
+    color: var(--muted);
 
-                    <div class="theory-badge">
-                        MODEL
-                    </div>
+    font-size: 10px;
+}
 
-                </div>
+.measurement strong {
+    color: var(--green-900);
 
+    font-size: 11px;
+}
 
-                <div class="murray-content">
+.equation-card > span {
+    color: var(--green-600);
 
-                    <div class="murray-formula">
+    font-size: 8px;
+    font-weight: 800;
 
-                        <span>
-                            대표적인 분지 모델
-                        </span>
+    letter-spacing: 0.1em;
+}
 
-                        <strong>
-                            r₀³ ≈ r₁³ + r₂³
-                        </strong>
+.equation {
+    margin: 10px 0;
 
-                        <p>
-                            부모 혈관과 자식 혈관의 반지름 관계를
-                            이용하여 유체 운반과 에너지 소비의 관계를
-                            설명하는 이상화된 모델입니다.
-                        </p>
+    font-family: Georgia, serif;
 
-                    </div>
+    font-size: 23px;
 
+    text-align: center;
 
-                    <div class="murray-explanation">
+    color: var(--green-900);
+}
 
-                        <p>
-                            Murray's Law은 모든 생물학적 혈관이나
-                            식물 잎맥에 항상 정확하게 적용되는 법칙으로
-                            해석해서는 안 됩니다.
+.equation-card p {
+    color: var(--muted);
 
-                            <br><br>
+    font-size: 9px;
 
-                            이 시뮬레이션에서는 분지 네트워크의
-                            직경과 유량 관계를 이해하기 위한
-                            이론적 비교 모델로 사용합니다.
-                        </p>
+    line-height: 1.65;
+}
 
-                    </div>
 
-                </div>
+/* =========================
+   RESULT
+========================= */
 
-            </div>
+.result-grid {
+    display: grid;
 
+    grid-template-columns:
+        repeat(4, 1fr);
 
-            <div class="final-analysis">
+    gap: 12px;
 
-                <div class="analysis-header">
+    margin-bottom: 22px;
+}
 
-                    <div class="card-label">
-                        RESEARCH INTERPRETATION
-                    </div>
+.result-card {
+    padding: 18px;
+}
 
-                    <h3>
-                        실험에서 시뮬레이션으로
-                    </h3>
+.result-card span {
+    display: block;
 
-                </div>
+    color: var(--green-600);
 
+    font-size: 8px;
+    font-weight: 800;
 
-                <div class="interpretation-grid">
+    letter-spacing: 0.08em;
 
-                    <div>
-                        <span>실제 실험</span>
-                        <p>
-                            실제 시금치 잎을 탈세포화하고
-                            현미경 관찰 및 색소 이동 실험을 수행합니다.
-                        </p>
-                    </div>
+    margin-bottom: 9px;
+}
 
-                    <div>
-                        <span>시뮬레이션</span>
-                        <p>
-                            실제 실험의 핵심 과정을 단순화하여
-                            탈세포화와 분지형 유체 이동을 시각화합니다.
-                        </p>
-                    </div>
+.result-card strong {
+    display: block;
 
-                    <div>
-                        <span>과학적 모델</span>
-                        <p>
-                            유체 이동 속도, 분지 구조,
-                            Hagen–Poiseuille Law 등을 이용해
-                            관류 현상을 해석합니다.
-                        </p>
-                    </div>
+    color: var(--green-900);
 
-                    <div>
-                        <span>연구 한계</span>
-                        <p>
-                            실제 혈관의 생리학적 기능과 동일하다고 판단하려면
-                            추가적인 생물학적 검증이 필요합니다.
-                        </p>
-                    </div>
+    font-size: 16px;
 
-                </div>
+    line-height: 1.3;
 
-            </div>
+    margin-bottom: 8px;
+}
 
+.result-card p {
+    color: var(--muted);
 
-            <div class="final-note">
+    font-size: 9px;
 
-                <strong>
-                    SIMULATION SCOPE
-                </strong>
+    line-height: 1.55;
+}
 
-                <p>
-                    본 시뮬레이션은 시금치 잎을 이용한 식물 유래
-                    스캐폴드 연구의 개념과 실험 과정을 이해하기 위한
-                    교육용 모델입니다.
 
-                    <br><br>
+/* =========================
+   DEEP ANALYSIS
+========================= */
 
-                    시뮬레이션에서 사용되는 수치와 유체 이동 모델은
-                    실제 실험 측정값과 구분되어야 하며,
-                    실제 조직공학 적용 가능성을 판단하기 위해서는
-                    세포 배양, 혈액적합성, 기계적 특성 및 장기적인
-                    생체적합성에 대한 추가 검증이 필요합니다.
-                </p>
+.deep-analysis {
+    display: flex;
 
-            </div>
+    flex-direction: column;
 
-        </article>
+    gap: 14px;
+}
 
-    </section>
+.research-section {
+    padding: 28px;
 
+    display: grid;
 
-    <!-- NAVIGATION -->
-    <nav class="navigation">
+    grid-template-columns: 48px 1fr;
 
-        <button
-            class="secondary-button"
-            id="prevButton"
-            disabled>
-            ← 이전
-        </button>
+    gap: 20px;
+}
 
+.research-index {
+    width: 38px;
+    height: 38px;
 
-        <div class="navigation-status">
+    border-radius: 10px;
 
-            <span id="currentStep">
-                1
-            </span>
+    background: var(--green-900);
 
-            <span>/</span>
+    color: white;
 
-            <span>5</span>
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-        </div>
+    font-size: 10px;
+    font-weight: 800;
+}
 
+.research-section h3 {
+    color: var(--green-900);
 
-        <button
-            class="primary-button"
-            id="nextButton">
-            다음 단계 →
-        </button>
+    font-size: 20px;
 
-    </nav>
+    margin-bottom: 13px;
+}
 
-</main>
+.research-section p {
+    color: var(--muted);
 
+    font-size: 11px;
 
-<footer class="site-footer">
+    line-height: 1.8;
 
-    <p>
-        Spinach Vascular Scaffold · Educational Research Simulation
-    </p>
+    margin-bottom: 11px;
+}
 
-    <p>
-        Experimental observations, theoretical models, and simulation assumptions
-        are presented separately.
-    </p>
+.concept-list {
+    display: flex;
 
-</footer>
+    flex-wrap: wrap;
 
+    gap: 7px;
 
-<script src="script.js"></script>
+    margin-top: 16px;
+}
 
-</body>
-</html>
+.concept-list span {
+    background: var(--green-100);
+
+    color: var(--green-700);
+
+    border-radius: 7px;
+
+    padding: 6px 9px;
+
+    font-size: 8px;
+    font-weight: 700;
+}
+
+.large-formula {
+    margin: 20px 0;
+
+    padding: 18px;
+
+    border-radius: 10px;
+
+    background: var(--green-50);
+
+    text-align: center;
+
+    color: var(--green-900);
+
+    font-family: Georgia, serif;
+
+    font-size: 25px;
+}
+
+.large-formula span {
+    margin: 0 5px;
+}
+
+.engineering-note {
+    margin-top: 17px;
+
+    padding: 15px;
+
+    border-left: 3px solid var(--green-600);
+
+    background: var(--green-50);
+
+    display: grid;
+
+    grid-template-columns: 130px 1fr;
+
+    gap: 12px;
+}
+
+.engineering-note strong {
+    color: var(--green-800);
+
+    font-size: 10px;
+}
+
+.engineering-note span {
+    color: var(--muted);
+
+    font-size: 10px;
+
+    line-height: 1.65;
+}
+
+
+/* =========================
+   PIPELINE
+========================= */
+
+.pipeline {
+    display: grid;
+
+    grid-template-columns:
+        repeat(5, 1fr);
+
+    gap: 7px;
+
+    margin: 20px 0;
+}
+
+.pipeline div {
+    padding: 12px 7px;
+
+    background: var(--green-50);
+
+    border: 1px solid var(--line);
+
+    border-radius: 8px;
+
+    text-align: center;
+}
+
+.pipeline b {
+    display: block;
+
+    color: var(--green-600);
+
+    font-size: 9px;
+
+    margin-bottom: 5px;
+}
+
+.pipeline span {
+    color: var(--green-800);
+
+    font-size: 8px;
+
+    line-height: 1.4;
+}
+
+
+/* =========================
+   CONCLUSION
+========================= */
+
+.final-conclusion {
+    margin-top: 22px;
+
+    padding: 30px;
+
+    background: var(--green-900);
+
+    color: white;
+
+    border: none;
+}
+
+.final-conclusion .section-label {
+    color: #a8c8b1;
+}
+
+.final-conclusion h3 {
+    font-size: 24px;
+
+    line-height: 1.4;
+
+    margin-bottom: 16px;
+}
+
+.final-conclusion p {
+    color: #c8d8cc;
+
+    font-size: 11px;
+
+    line-height: 1.8;
+
+    max-width: 850px;
+
+    margin-bottom: 12px;
+}
+
+.final-conclusion b {
+    color: white;
+}
+
+
+/* =========================
+   REFERENCES
+========================= */
+
+.references {
+    margin-top: 15px;
+
+    padding: 22px;
+}
+
+.references p {
+    color: var(--muted);
+
+    font-size: 9px;
+
+    margin: 6px 0;
+}
+
+
+/* =========================
+   NAVIGATION
+========================= */
+
+.navigation {
+    margin-top: 20px;
+
+    display: grid;
+
+    grid-template-columns: 1fr auto 1fr;
+
+    align-items: center;
+}
+
+.navigation #nextButton {
+    justify-self: end;
+}
+
+.page-counter {
+    color: var(--muted);
+
+    font-size: 12px;
+}
+
+.page-counter strong {
+    color: var(--green-800);
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    text-align: center;
+
+    padding: 25px;
+
+    color: #9aa59f;
+
+    font-size: 9px;
+}
+
+footer p:first-child {
+    margin-bottom: 3px;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 900px) {
+
+    .screen {
+        padding: 28px;
+    }
+
+    .screen-heading {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .research-note {
+        min-width: auto;
+    }
+
+    .two-column,
+    .decell-layout,
+    .analysis-layout,
+    .flow-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .result-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .pipeline {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .header-inner {
+        padding: 18px;
+    }
+
+    .header-tag {
+        display: none;
+    }
+
+    .container {
+        padding: 25px 12px 50px;
+    }
+
+    .screen {
+        padding: 22px 16px;
+        border-radius: 15px;
+    }
+
+    .screen-heading h2 {
+        font-size: 24px;
+    }
+
+    .leaf-svg {
+        height: 320px;
+    }
+
+    .decell-visual {
+        height: 320px;
+    }
+
+    .before-after {
+        grid-template-columns: 1fr;
+    }
+
+    .comparison-arrow {
+        transform: rotate(90deg);
+    }
+
+    #vascularNetwork {
+        height: 360px;
+    }
+
+    .result-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .research-section {
+        grid-template-columns: 1fr;
+    }
+
+    .engineering-note {
+        grid-template-columns: 1fr;
+    }
+
+    .progress {
+        overflow-x: auto;
+        padding-bottom: 5px;
+    }
+
+    .progress-steps {
+        min-width: 480px;
+    }
+
+    .progress-track {
+        min-width: 380px;
+    }
+}
