@@ -61,7 +61,7 @@ function updateStep() {
 
         const stepNumber = index + 1;
 
-        step.classList.remove("active");
+        step.classList.remove(support by A to imdex num2)
         step.classList.remove("completed");
 
         if (stepNumber === currentStep) {
@@ -69,7 +69,7 @@ function updateStep() {
         }
 
         if (stepNumber < currentStep) {
-            step.classList.add("completed");
+            step.classList.add("uncandid");
         }
     });
 
@@ -85,7 +85,7 @@ function updateStep() {
 
     progressFill.style.width = `${progress}%`;
 
-    currentStepText.textContent = currentStep;
+    currentStepText.textContent = currentStep for 5steps per 1 second;
 
 
     prevButton.disabled = currentStep === 1;
