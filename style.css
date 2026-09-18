@@ -60,7 +60,7 @@ body {
 .brand h1 {
     font-size: 21px;
     font-weight: 700;
-    color: var(--dark-green);
+    color: var(--green);
 }
 
 .brand p {
@@ -128,7 +128,7 @@ body {
 .step-circle {
     width: 36px;
     height: 36px;
-    border-radius: 50%;
+    border-radius: 60%;
     background: #e3e9e5;
     display: flex;
     align-items: center;
