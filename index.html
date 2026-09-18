@@ -3,1220 +3,1554 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spinach Vascular Scaffold | Research Simulation</title>
+
+    <title>Spinach Vascular Scaffold Simulation</title>
+
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-<!-- =====================================================
-     HEADER
-===================================================== -->
-<header class="site-header">
+
+<header class="header">
+
     <div class="header-inner">
-        <div class="brand">
-            <div class="brand-mark">
-                S
-            </div>
+
+        <div class="logo">
+            <div class="logo-mark">S</div>
+
             <div>
-                <div class="brand-title">
-                    SPINACH VASCULAR SCAFFOLD
-                </div>
-                <div class="brand-subtitle">
-                    Interactive Research Simulation
-                </div>
+                <h1>Spinach Vascular Scaffold</h1>
+                <p>Plant-derived scaffold · Tissue Engineering Simulation</p>
             </div>
         </div>
-        <div class="header-meta">
-            Tissue Engineering · Bioengineering
+
+        <div class="header-tag">
+            EDUCATIONAL MODEL
         </div>
+
     </div>
+
 </header>
-<!-- =====================================================
-     MAIN
-===================================================== -->
-<main class="main-container">
-    <!-- =================================================
-         INTRO
-    ================================================== -->
-    <section class="intro-section">
-        <div class="eyebrow">
-            EXPERIMENT-BASED SIMULATION
-        </div>
-        <h1>
-            시금치 잎을 이용한<br>
-            인공 혈관 스캐폴드 제작 및 기능 모사
-        </h1>
-        <p class="intro-description">
-            시금치 잎의 세포 성분을 제거하여 잎맥 구조를
-            식물 유래 지지체로 모델링하고, 분지형 네트워크를
-            통한 유체 이동을 관찰하는 교육용 연구 시뮬레이션입니다.
-        </p>
-        <div class="research-question">
-            <span class="question-label">
-                RESEARCH QUESTION
-            </span>
-            <p>
-                시금치 잎의 복잡한 잎맥 네트워크를
-                혈관 조직공학을 위한 구조적 모델로 활용할 수 있는가?
-            </p>
-        </div>
-    </section>
-    <!-- =================================================
+
+
+<main class="container">
+
+
+    <!-- =========================
          PROGRESS
-    ================================================== -->
-    <section class="progress-section">
+    ========================== -->
+
+    <section class="progress">
+
         <div class="progress-track">
-            <div
-                class="progress-fill"
-                id="progressFill">
-            </div>
+            <div id="progressFill"></div>
         </div>
+
         <div class="progress-steps">
-            <button
-                class="progress-step active"
-                data-step="1">
-                <span class="progress-number">
-                    01
-                </span>
-                <span class="progress-name">
-                    구조 관찰
-                </span>
+
+            <button class="progress-step active" data-step="1">
+                <span>01</span>
+                <small>관찰</small>
             </button>
-            <button
-                class="progress-step"
-                data-step="2">
-                <span class="progress-number">
-                    02
-                </span>
-                <span class="progress-name">
-                    탈세포화
-                </span>
+
+            <button class="progress-step" data-step="2">
+                <span>02</span>
+                <small>탈세포화</small>
             </button>
-            <button
-                class="progress-step"
-                data-step="3">
-                <span class="progress-number">
-                    03
-                </span>
-                <span class="progress-name">
-                    구조 분석
-                </span>
+
+            <button class="progress-step" data-step="3">
+                <span>03</span>
+                <small>구조 분석</small>
             </button>
-            <button
-                class="progress-step"
-                data-step="4">
-                <span class="progress-number">
-                    04
-                </span>
-                <span class="progress-name">
-                    관류 실험
-                </span>
+
+            <button class="progress-step" data-step="4">
+                <span>04</span>
+                <small>관류</small>
             </button>
-            <button
-                class="progress-step"
-                data-step="5">
-                <span class="progress-number">
-                    05
-                </span>
-                <span class="progress-name">
-                    결과 분석
-                </span>
+
+            <button class="progress-step" data-step="5">
+                <span>05</span>
+                <small>분석</small>
             </button>
+
         </div>
+
     </section>
-    <!-- =================================================
-         EXPERIMENT CONTENT
-    ================================================== -->
-    <section class="experiment-container">
-        <!-- =================================================
-             STEP 1
-        ================================================== -->
-        <article
-            class="experiment-step active"
-            id="step1">
-            <div class="step-header">
-                <div class="step-number">
-                    STEP 01
-                </div>
+
+
+
+    <!-- =========================
+         STEP 1
+    ========================== -->
+
+    <section class="screen active" id="screen1">
+
+        <div class="screen-heading">
+
+            <div>
+                <div class="eyebrow">STEP 01 · INITIAL OBSERVATION</div>
+
                 <h2>
-                    시금치 잎 구조 관찰
+                    시금치 잎의<br>
+                    관다발 구조를 관찰합니다.
                 </h2>
+
                 <p>
-                    탈세포화 이전의 시금치 잎에서
-                    세포 조직과 잎맥의 계층적 분지 구조를 관찰합니다.
+                    시뮬레이션의 출발점은 탈세포화 이전의 잎입니다.
+                    녹색 조직과 중심 잎맥, 측면으로 분지되는
+                    잎맥 네트워크를 관찰합니다.
                 </p>
             </div>
-            <div class="content-grid">
-                <!-- VISUAL -->
-                <div class="visual-card">
-                    <div class="card-label">
-                        INITIAL STRUCTURE
-                    </div>
-                    <div class="leaf-stage">
-                        <svg
-                            viewBox="0 0 600 460"
-                            class="leaf-svg"
-                            aria-label="시금치 잎 구조">
-                            <!-- Leaf body -->
-                            <path
-                                class="leaf-body"
-                                d="
-                                M95 270
-                                C70 190 125 85 260 65
-                                C390 45 535 125 510 250
-                                C485 375 320 425 190 365
-                                C135 340 105 305 95 270 Z
-                                "
-                            />
-                            <!-- Main vein -->
-                            <path
-                                class="leaf-vein main-vein"
-                                d="
-                                M95 280
-                                C200 260 310 225 505 175
-                                "
-                            />
-                            <!-- Primary branches -->
-                            <path
-                                class="leaf-vein primary-vein"
-                                d="M160 265 C145 210 135 155 120 115"
-                            />
-                            <path
-                                class="leaf-vein primary-vein"
-                                d="M205 252 C195 195 190 135 185 90"
-                            />
-                            <path
-                                class="leaf-vein primary-vein"
-                                d="M250 240 C250 180 250 120 255 75"
-                            />
-                            <path
-                                class="leaf-vein primary-vein"
-                                d="M300 225 C315 165 335 115 360 75"
-                            />
-                            <path
-                                class="leaf-vein primary-vein"
-                                d="M350 212 C385 165 420 125 460 105"
-                            />
-                            <!-- Lower branches -->
-                            <path
-                                class="leaf-vein primary-vein"
-                                d="M160 265 C145 305 130 335 115 355"
-                            />
-                            <path
-                                class="leaf-vein primary-vein"
-                                d="M205 252 C190 300 180 345 175 375"
-                            />
-                            <path
-                                class="leaf-vein primary-vein"
-                                d="M250 240 C250 295 250 350 245 390"
-                            />
-                            <path
-                                class="leaf-vein primary-vein"
-                                d="M300 225 C315 280 330 330 350 365"
-                            />
-                            <path
-                                class="leaf-vein primary-vein"
-                                d="M350 212 C385 260 420 295 455 315"
-                            />
-                            <!-- Secondary branches -->
-                            <path
-                                class="secondary-vein"
-                                d="M145 210 C120 195 105 180 95 165"
-                            />
-                            <path
-                                class="secondary-vein"
-                                d="M195 190 C165 175 145 155 130 140"
-                            />
-                            <path
-                                class="secondary-vein"
-                                d="M255 175 C225 155 205 135 190 115"
-                            />
-                            <path
-                                class="secondary-vein"
-                                d="M315 155 C345 140 370 125 390 105"
-                            />
-                            <path
-                                class="secondary-vein"
-                                d="M375 190 C410 180 445 165 470 145"
-                            />
-                        </svg>
-                    </div>
-                </div>
-                <!-- OBSERVATION -->
-                <aside class="science-card">
-                    <div class="card-label">
-                        OBSERVATION
-                    </div>
-                    <h3>
-                        관찰 대상
-                    </h3>
-                    <div class="data-list">
-                        <div class="data-item">
-                            <span>잎 조직</span>
-                            <strong>
-                                세포 조직 존재
-                            </strong>
-                        </div>
-                        <div class="data-item">
-                            <span>중심맥</span>
-                            <strong>
-                                주요 운반 경로
-                            </strong>
-                        </div>
-                        <div class="data-item">
-                            <span>측맥</span>
-                            <strong>
-                                반복적 분지
-                            </strong>
-                        </div>
-                        <div class="data-item">
-                            <span>전체 구조</span>
-                            <strong>
-                                네트워크형
-                            </strong>
-                        </div>
-                    </div>
-                    <div class="concept-box">
-                        <span>
-                            KEY CONCEPT
-                        </span>
-                        <strong>
-                            Biomimicry
-                        </strong>
-                        <p>
-                            생물학적 구조와 기능에서 영감을 얻어
-                            공학적 시스템을 설계하는 접근입니다.
-                        </p>
-                    </div>
-                </aside>
+
+            <div class="research-note">
+                <span>RESEARCH QUESTION</span>
+                <strong>
+                    잎의 기존 관다발을<br>
+                    지지체의 유체 운반 경로로 활용할 수 있을까?
+                </strong>
             </div>
-            <div class="science-note">
-                <span class="note-tag">
-                    EXPERIMENT
-                </span>
+
+        </div>
+
+
+        <div class="two-column">
+
+            <div class="visual-card leaf-card">
+
+                <div class="card-header">
+                    <span>LIVE SPECIMEN MODEL</span>
+                    <span>Spinacia oleracea</span>
+                </div>
+
+                <svg class="leaf-svg" viewBox="0 0 700 500">
+
+                    <path
+                        class="leaf-surface"
+                        d="M105 285
+                           C155 145 310 80 490 115
+                           C575 132 620 190 590 260
+                           C550 355 395 420 245 405
+                           C155 396 75 350 105 285Z"
+                    />
+
+                    <!-- main vein -->
+
+                    <path
+                        class="vein main"
+                        d="M92 300 C245 285 410 245 605 185"
+                    />
+
+                    <!-- upper branches -->
+
+                    <path class="vein branch"
+                          d="M170 290 C155 235 140 190 120 160"/>
+
+                    <path class="vein branch"
+                          d="M225 280 C220 215 210 165 205 125"/>
+
+                    <path class="vein branch"
+                          d="M285 270 C290 205 300 150 315 105"/>
+
+                    <path class="vein branch"
+                          d="M345 255 C370 195 400 150 430 120"/>
+
+                    <path class="vein branch"
+                          d="M410 235 C455 190 495 165 530 155"/>
+
+                    <!-- lower branches -->
+
+                    <path class="vein branch"
+                          d="M165 292 C145 325 125 350 105 370"/>
+
+                    <path class="vein branch"
+                          d="M220 282 C205 330 190 365 180 395"/>
+
+                    <path class="vein branch"
+                          d="M285 270 C285 325 280 370 275 405"/>
+
+                    <path class="vein branch"
+                          d="M350 255 C365 305 380 345 405 380"/>
+
+                    <path class="vein branch"
+                          d="M420 230 C455 270 495 300 535 315"/>
+
+                    <path class="vein branch"
+                          d="M475 215 C520 240 560 250 585 255"/>
+
+                </svg>
+
+            </div>
+
+
+            <div class="info-card">
+
+                <div class="section-label">
+                    STRUCTURAL OBSERVATION
+                </div>
+
+                <div class="metric">
+                    <span>중심 잎맥</span>
+                    <strong>1</strong>
+                </div>
+
+                <div class="metric">
+                    <span>주요 측면 분지</span>
+                    <strong>11</strong>
+                </div>
+
+                <div class="metric">
+                    <span>네트워크 특성</span>
+                    <strong>계층적 분지</strong>
+                </div>
+
+                <div class="divider"></div>
+
+                <h3>왜 잎맥을 주목하는가?</h3>
+
                 <p>
-                    실제 실험에서는 탈세포화 전후의 잎을 육안 및
-                    현미경으로 관찰하여 조직의 변화와 잎맥 구조의
-                    보존 여부를 비교할 수 있습니다.
+                    식물의 관다발은 잎 내부의 물질 이동을 담당하는
+                    자연적인 유체 운반 네트워크입니다.
                 </p>
-            </div>
-        </article>
-        <!-- =================================================
-             STEP 2
-        ================================================== -->
-        <article
-            class="experiment-step"
-            id="step2">
-            <div class="step-header">
-                <div class="step-number">
-                    STEP 02
+
+                <p>
+                    탈세포화 후에도 이러한 공간적 네트워크가
+                    유지될 수 있다면, 이를 조직공학용
+                    <b>pre-vascularized scaffold</b>의 구조적 기반으로
+                    활용할 가능성이 있습니다.
+                </p>
+
+                <div class="concept">
+                    <span>KEY CONCEPT</span>
+                    <strong>Plant-derived Scaffold</strong>
                 </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         STEP 2
+    ========================== -->
+
+    <section class="screen" id="screen2">
+
+        <div class="screen-heading">
+
+            <div>
+
+                <div class="eyebrow">
+                    STEP 02 · DECELLULARIZATION
+                </div>
+
                 <h2>
-                    탈세포화
+                    세포를 제거하고<br>
+                    식물성 지지체를 남깁니다.
                 </h2>
+
                 <p>
-                    세포 성분을 제거하면서 잎맥의 구조적 지지체를
-                    상대적으로 보존하는 과정을 모델링합니다.
+                    탈세포화(decellularization)는 세포 성분을 제거하면서
+                    조직의 3차원 구조를 최대한 보존하는 과정입니다.
+                    이 시뮬레이션에서는 연구 사례를 참고해
+                    계면활성제 기반의 처리 과정을 모델링합니다.
                 </p>
+
             </div>
-            <div class="process-layout">
-                <!-- LEFT: PROCESS -->
-                <div class="process-panel">
-                    <div class="card-label">
-                        DECELLULARIZATION PROCESS
-                    </div>
-                    <div class="process-flow">
-                        <div class="process-node active-node">
-                            <span class="node-number">
-                                01
-                            </span>
-                            <strong>
-                                시금치 잎 준비
-                            </strong>
-                            <small>
-                                식물 조직
-                            </small>
-                        </div>
-                        <div class="process-arrow">
-                            ↓
-                        </div>
-                        <div class="process-node">
-                            <span class="node-number">
-                                02
-                            </span>
-                            <strong>
-                                계면활성제 처리
-                            </strong>
-                            <small>
-                                세포 성분 제거
-                            </small>
-                        </div>
-                        <div class="process-arrow">
-                            ↓
-                        </div>
-                        <div class="process-node">
-                            <span class="node-number">
-                                03
-                            </span>
-                            <strong>
-                                세척
-                            </strong>
-                            <small>
-                                잔류 성분 제거
-                            </small>
-                        </div>
-                        <div class="process-arrow">
-                            ↓
-                        </div>
-                        <div class="process-node">
-                            <span class="node-number">
-                                04
-                            </span>
-                            <strong>
-                                식물 유래 지지체
-                            </strong>
-                            <small>
-                                잎맥 구조
-                            </small>
-                        </div>
-                    </div>
-                </div>
-                <!-- RIGHT: SCIENCE -->
-                <div class="science-card large-card">
-                    <div class="card-label">
-                        MATERIALS & MECHANISM
-                    </div>
-                    <div class="material-block">
-                        <div class="material-title">
-                            SDS
-                        </div>
-                        <p>
-                            Sodium dodecyl sulfate는 음이온성 계면활성제로,
-                            세포막 및 세포 성분을 제거하는 탈세포화 과정에
-                            활용될 수 있습니다.
-                        </p>
-                    </div>
-                    <div class="material-block">
-                        <div class="material-title">
-                            TRITON X-100
-                        </div>
-                        <p>
-                            비이온성 계면활성제로 세포 성분과 지질을
-                            제거하기 위한 탈세포화 연구에서 사용됩니다.
-                            처리 조건은 연구 목적과 조직 특성에 따라 달라집니다.
-                        </p>
-                    </div>
-                    <div class="material-block">
-                        <div class="material-title">
-                            DECELLULARIZATION
-                        </div>
-                        <p>
-                            핵심 목적은 조직의 모든 구조를 제거하는 것이 아니라
-                            세포 성분을 감소시키면서 원하는 3차원 구조와
-                            지지체 특성을 가능한 한 보존하는 것입니다.
-                        </p>
-                    </div>
-                </div>
+
+            <div class="research-note">
+
+                <span>CORE IDEA</span>
+
+                <strong>
+                    Cellular components<br>
+                    ↓<br>
+                    Removal<br>
+                    ↓<br>
+                    Structural scaffold
+                </strong>
+
             </div>
-            <!-- DECell CONTROL -->
-            <div class="simulation-control">
-                <div class="control-info">
-                    <span>
-                        SIMULATION PROGRESS
+
+        </div>
+
+
+        <div class="decell-layout">
+
+            <div class="visual-card">
+
+                <div class="card-header">
+
+                    <span>DECELLULARIZATION MODEL</span>
+
+                    <span id="decellState">
+                        READY
                     </span>
-                    <strong id="decellPercent">
-                        0%
-                    </strong>
+
                 </div>
-                <div class="simulation-bar">
+
+
+                <div class="decell-visual">
+
+                    <svg viewBox="0 0 700 500">
+
+                        <path
+                            id="decellLeaf"
+                            class="leaf-surface"
+                            d="M105 285
+                               C155 145 310 80 490 115
+                               C575 132 620 190 590 260
+                               C550 355 395 420 245 405
+                               C155 396 75 350 105 285Z"
+                        />
+
+                        <path
+                            class="vein main"
+                            d="M92 300 C245 285 410 245 605 185"
+                        />
+
+                        <path class="vein branch"
+                              d="M170 290 C155 235 140 190 120 160"/>
+
+                        <path class="vein branch"
+                              d="M225 280 C220 215 210 165 205 125"/>
+
+                        <path class="vein branch"
+                              d="M285 270 C290 205 300 150 315 105"/>
+
+                        <path class="vein branch"
+                              d="M345 255 C370 195 400 150 430 120"/>
+
+                        <path class="vein branch"
+                              d="M410 235 C455 190 495 165 530 155"/>
+
+                        <path class="vein branch"
+                              d="M165 292 C145 325 125 350 105 370"/>
+
+                        <path class="vein branch"
+                              d="M220 282 C205 330 190 365 180 395"/>
+
+                        <path class="vein branch"
+                              d="M285 270 C285 325 280 370 275 405"/>
+
+                        <path class="vein branch"
+                              d="M350 255 C365 305 380 345 405 380"/>
+
+                        <path class="vein branch"
+                              d="M420 230 C455 270 495 300 535 315"/>
+
+                        <path class="vein branch"
+                              d="M475 215 C520 240 560 250 585 255"/>
+
+                    </svg>
+
                     <div
-                        class="simulation-bar-fill"
-                        id="decellBar">
+                        class="cell-layer"
+                        id="cellLayer"
+                    >
+                        CELLULAR MATERIAL
                     </div>
+
                 </div>
-                <p id="decellStatus">
-                    탈세포화 시뮬레이션을 시작하세요.
-                </p>
-                <button
-                    class="primary-button"
-                    id="decellButton">
-                    탈세포화 시작
-                </button>
+
             </div>
-            <div class="mechanism-box">
-                <div class="mechanism-title">
-                    SCIENTIFIC MECHANISM
+
+
+            <div class="process-panel">
+
+                <div class="process-stage">
+
+                    <span class="stage-number">01</span>
+
+                    <div>
+                        <strong>Perfusion / Solution exposure</strong>
+
+                        <p>
+                            식물 조직 내부의 관다발 경로를 통해
+                            처리 용액이 이동하는 모델입니다.
+                        </p>
+                    </div>
+
                 </div>
-                <div class="mechanism-grid">
+
+
+                <div class="process-stage">
+
+                    <span class="stage-number">02</span>
+
                     <div>
-                        <strong>
-                            Cell membrane
-                        </strong>
+                        <strong>Detergent-mediated disruption</strong>
+
                         <p>
-                            계면활성제와의 상호작용을 통해
-                            세포막 및 세포 성분이 제거됩니다.
+                            계면활성제가 세포막과 세포 내 성분의
+                            제거를 돕는 과정을 개념적으로 표현합니다.
                         </p>
                     </div>
-                    <div>
-                        <strong>
-                            Structural network
-                        </strong>
-                        <p>
-                            세포 성분이 감소하면서 잎맥의
-                            공간적 네트워크가 상대적으로 드러납니다.
-                        </p>
-                    </div>
-                    <div>
-                        <strong>
-                            Plant-derived scaffold
-                        </strong>
-                        <p>
-                            탈세포화된 식물 구조를 조직공학적
-                            지지체 모델로 활용할 수 있습니다.
-                        </p>
-                    </div>
+
                 </div>
+
+
+                <div class="process-stage">
+
+                    <span class="stage-number">03</span>
+
+                    <div>
+                        <strong>Clearing / Washing</strong>
+
+                        <p>
+                            잔여 처리 성분과 제거된 물질을
+                            씻어내는 후처리 단계입니다.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="materials">
+
+                    <div class="section-label">
+                        MATERIAL / TECHNOLOGY
+                    </div>
+
+                    <div class="material-row">
+                        <span>SDS</span>
+                        <small>
+                            강한 계면활성제로 세포 성분 제거에 사용된
+                            연구 사례가 있음
+                        </small>
+                    </div>
+
+                    <div class="material-row">
+                        <span>Triton X-100</span>
+                        <small>
+                            비이온성 계면활성제.
+                            clearing 단계 등에 연구 사례가 있음
+                        </small>
+                    </div>
+
+                    <div class="material-row">
+                        <span>Perfusion</span>
+                        <small>
+                            잎자루에서 용액을 관류시키는 방식
+                        </small>
+                    </div>
+
+                    <div class="material-row">
+                        <span>Cellulose</span>
+                        <small>
+                            탈세포화 후 구조적 지지체의 주요 구성성분
+                        </small>
+                    </div>
+
+                </div>
+
+
+                <div class="decell-control">
+
+                    <div class="progress-title">
+
+                        <span>PROCESS PROGRESS</span>
+
+                        <strong id="decellPercent">
+                            0%
+                        </strong>
+
+                    </div>
+
+                    <div class="progress-bar">
+
+                        <div
+                            id="decellBar"
+                        ></div>
+
+                    </div>
+
+                    <p id="decellStatus">
+                        탈세포화 모델을 시작하세요.
+                    </p>
+
+                    <button
+                        id="decellButton"
+                        class="button primary"
+                    >
+                        탈세포화 시작
+                    </button>
+
+                </div>
+
             </div>
-        </article>
-        <!-- =================================================
-             STEP 3
-        ================================================== -->
-        <article
-            class="experiment-step"
-            id="step3">
-            <div class="step-header">
-                <div class="step-number">
-                    STEP 03
+
+        </div>
+
+
+        <div class="science-box">
+
+            <div class="section-label">
+                SCIENTIFIC INTERPRETATION
+            </div>
+
+            <p>
+                탈세포화의 핵심은 세포 성분을 제거하면서
+                원래의 extracellular architecture를 가능한 한 유지하는 것입니다.
+                실제 연구에서는 처리 조건에 따라 DNA·단백질 잔류량,
+                조직 구조 및 관류 가능성을 별도로 평가합니다.
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         STEP 3
+    ========================== -->
+
+    <section class="screen" id="screen3">
+
+        <div class="screen-heading">
+
+            <div>
+
+                <div class="eyebrow">
+                    STEP 03 · STRUCTURAL ANALYSIS
                 </div>
+
                 <h2>
-                    탈세포화 후 구조 분석
+                    탈세포화가<br>
+                    무엇을 남겼는가?
                 </h2>
+
                 <p>
-                    탈세포화 전후의 조직 상태를 비교하고,
-                    스캐폴드의 구조적 특징과 한계를 분석합니다.
+                    단순히 “잎이 하얗게 되었다”는 것만으로
+                    탈세포화가 성공했다고 판단할 수는 없습니다.
+                    구조 보존과 기능적 관류 가능성을 함께 생각해야 합니다.
                 </p>
+
             </div>
-            <div class="before-after">
-                <div class="structure-card">
-                    <div class="structure-header">
-                        <span>
+
+        </div>
+
+
+        <div class="analysis-layout">
+
+
+            <div class="visual-card">
+
+                <div class="card-header">
+
+                    <span>BEFORE / AFTER</span>
+
+                    <span>STRUCTURE</span>
+
+                </div>
+
+
+                <div class="before-after">
+
+                    <div>
+
+                        <div class="mini-title">
                             BEFORE
-                        </span>
-                        <strong>
-                            탈세포화 전
-                        </strong>
-                    </div>
-                    <div class="structure-visual">
-                        <div class="cell-layer">
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                            <span></span>
                         </div>
-                        <div class="network-lines">
-                            <i></i>
-                            <i></i>
-                            <i></i>
-                            <i></i>
-                            <i></i>
-                        </div>
-                    </div>
-                    <p>
-                        세포 조직과 잎맥 구조가 함께 존재합니다.
-                    </p>
-                </div>
-                <div class="comparison-arrow">
-                    →
-                </div>
-                <div class="structure-card">
-                    <div class="structure-header">
-                        <span>
-                            AFTER
-                        </span>
-                        <strong>
-                            탈세포화 후
-                        </strong>
-                    </div>
-                    <div class="structure-visual scaffold-visual">
-                        <div class="network-lines">
-                            <i></i>
-                            <i></i>
-                            <i></i>
-                            <i></i>
-                            <i></i>
-                        </div>
-                    </div>
-                    <p>
-                        세포 성분이 감소하고 잎맥 네트워크가
-                        상대적으로 뚜렷하게 드러나는 모델입니다.
-                    </p>
-                </div>
-            </div>
-            <div class="analysis-grid">
-                <div class="science-card">
-                    <div class="card-label">
-                        STRUCTURAL ANALYSIS
-                    </div>
-                    <h3>
-                        무엇이 보존되어야 하는가?
-                    </h3>
-                    <ul class="science-list">
-                        <li>
-                            <strong>중심맥</strong>
-                            <span>
-                                주요 유체 이동 경로
-                            </span>
-                        </li>
-                        <li>
-                            <strong>측맥</strong>
-                            <span>
-                                반복적인 분지 구조
-                            </span>
-                        </li>
-                        <li>
-                            <strong>연결성</strong>
-                            <span>
-                                네트워크가 끊어지지 않는 정도
-                            </span>
-                        </li>
-                        <li>
-                            <strong>공간 구조</strong>
-                            <span>
-                                미세 채널의 3차원적 배열
-                            </span>
-                        </li>
-                    </ul>
-                </div>
-                <div class="science-card">
-                    <div class="card-label">
-                        EXTRACELLULAR MATRIX
-                    </div>
-                    <h3>
-                        ECM과 Scaffold
-                    </h3>
-                    <p class="long-text">
-                        조직공학에서 세포가 주변 환경과 상호작용할 수 있는
-                        구조적·화학적 환경은 중요한 요소입니다.
-                        <br><br>
-                        식물 유래 지지체 연구에서는 탈세포화 과정 이후
-                        남은 구조가 세포 배양을 위한 물리적 지지체로
-                        활용될 가능성을 탐구합니다.
-                        <br><br>
-                        그러나 식물 유래 셀룰로오스와 인간 세포 사이의
-                        상호작용은 실제 적용 전에 별도의 생체적합성 및
-                        세포 부착 검증이 필요합니다.
-                    </p>
-                </div>
-            </div>
-            <div class="limitation-box">
-                <div class="limitation-title">
-                    RESEARCH LIMITATION
-                </div>
-                <p>
-                    탈세포화가 완료되었다고 해서 실제 인간 혈관과 동일한
-                    생물학적 기능이 확보되는 것은 아닙니다.
-                    혈액적합성, 세포 부착, 표면 특성, 기계적 안정성,
-                    혈전 형성 가능성 등은 각각 별도의 실험적 검증이 필요합니다.
-                </p>
-            </div>
-        </article>
-        <!-- =================================================
-             STEP 4
-        ================================================== -->
-        <article
-            class="experiment-step"
-            id="step4">
-            <div class="step-header">
-                <div class="step-number">
-                    STEP 04
-                </div>
-                <h2>
-                    분지형 네트워크 관류 실험
-                </h2>
-                <p>
-                    색소가 하나의 직선 경로가 아니라 잎맥의 분지점에서
-                    여러 방향으로 분배되는 과정을 시뮬레이션합니다.
-                </p>
-            </div>
-            <div class="flow-layout">
-                <!-- FLOW VISUAL -->
-                <div class="flow-card">
-                    <div class="flow-card-header">
-                        <div>
-                            <div class="card-label">
-                                MICROFLUIDIC FLOW MODEL
-                            </div>
-                            <h3>
-                                Leaf Vein Network
-                            </h3>
-                        </div>
-                        <div class="flow-status" id="flowStatus">
-                            READY
-                        </div>
-                    </div>
-                    <div class="flow-canvas">
-                        <svg
-                            id="flowSvg"
-                            viewBox="0 0 800 520"
-                            class="flow-svg">
-                            <!-- =================================================
-                                 NETWORK BACKGROUND
-                            ================================================== -->
-                            <g class="network-background">
-                                <path
-                                    d="M70 390 C180 380 300 345 420 300 C540 255 650 215 750 150"
-                                />
-                                <path
-                                    d="M250 350 C245 280 225 205 190 110"
-                                />
-                                <path
-                                    d="M350 325 C360 255 370 180 390 90"
-                                />
-                                <path
-                                    d="M470 285 C510 225 555 165 610 100"
-                                />
-                                <path
-                                    d="M555 250 C620 230 680 205 745 180"
-                                />
-                                <path
-                                    d="M210 365 C170 335 130 300 95 260"
-                                />
-                                <path
-                                    d="M310 340 C280 315 250 285 225 250"
-                                />
-                                <path
-                                    d="M400 310 C430 285 465 260 495 220"
-                                />
-                                <path
-                                    d="M500 270 C535 300 570 330 610 350"
-                                />
-                                <path
-                                    d="M580 235 C625 270 670 295 720 315"
-                                />
-                            </g>
-                            <!-- =================================================
-                                 MAIN NETWORK
-                            ================================================== -->
-                            <g class="network-main">
-                                <!-- Main vessel -->
-                                <path
-                                    class="flow-path"
-                                    d="M70 390 C180 380 300 345 420 300 C540 255 650 215 750 150"
-                                />
-                                <!-- Branch 1 -->
-                                <path
-                                    class="flow-path branch"
-                                    d="M250 350 C245 280 225 205 190 110"
-                                />
-                                <!-- Branch 2 -->
-                                <path
-                                    class="flow-path branch"
-                                    d="M350 325 C360 255 370 180 390 90"
-                                />
-                                <!-- Branch 3 -->
-                                <path
-                                    class="flow-path branch"
-                                    d="M470 285 C510 225 555 165 610 100"
-                                />
-                                <!-- Branch 4 -->
-                                <path
-                                    class="flow-path branch"
-                                    d="M555 250 C620 230 680 205 745 180"
-                                />
-                                <!-- Lower branches -->
-                                <path
-                                    class="flow-path branch"
-                                    d="M210 365 C170 335 130 300 95 260"
-                                />
-                                <path
-                                    class="flow-path branch"
-                                    d="M310 340 C280 315 250 285 225 250"
-                                />
-                                <path
-                                    class="flow-path branch"
-                                    d="M400 310 C430 285 465 260 495 220"
-                                />
-                                <path
-                                    class="flow-path branch"
-                                    d="M500 270 C535 300 570 330 610 350"
-                                />
-                                <path
-                                    class="flow-path branch"
-                                    d="M580 235 C625 270 670 295 720 315"
-                                />
-                            </g>
-                            <!-- =================================================
-                                 NODES
-                            ================================================== -->
-                            <g class="network-nodes">
-                                <circle cx="70" cy="390" r="10"/>
-                                <circle cx="210" cy="365" r="7"/>
-                                <circle cx="250" cy="350" r="8"/>
-                                <circle cx="310" cy="340" r="7"/>
-                                <circle cx="350" cy="325" r="8"/>
-                                <circle cx="400" cy="310" r="7"/>
-                                <circle cx="470" cy="285" r="8"/>
-                                <circle cx="500" cy="270" r="7"/>
-                                <circle cx="555" cy="250" r="8"/>
-                                <circle cx="580" cy="235" r="7"/>
-                            </g>
-                            <!-- =================================================
-                                 DYE PARTICLES
-                            ================================================== -->
-                            <g id="dyeParticles">
-                                <circle class="particle" r="5"/>
-                                <circle class="particle" r="5"/>
-                                <circle class="particle" r="5"/>
-                                <circle class="particle" r="5"/>
-                                <circle class="particle" r="5"/>
-                                <circle class="particle" r="5"/>
-                                <circle class="particle" r="5"/>
-                                <circle class="particle" r="5"/>
-                            </g>
-                            <!-- INJECTION POINT -->
-                            <circle
-                                id="injectionPoint"
-                                cx="70"
-                                cy="390"
-                                r="16"
-                                class="injection-point"
+
+                        <svg viewBox="0 0 350 280">
+
+                            <path
+                                class="leaf-surface"
+                                d="M55 160
+                                   C90 70 190 40 280 75
+                                   C325 95 320 170 270 215
+                                   C200 270 70 245 55 160Z"
                             />
+
+                            <path
+                                class="vein main"
+                                d="M45 170 C140 160 225 135 305 105"
+                            />
+
+                            <path
+                                class="vein branch"
+                                d="M125 160 C110 120 100 95 90 75"
+                            />
+
+                            <path
+                                class="vein branch"
+                                d="M180 150 C175 110 180 80 190 60"
+                            />
+
+                            <path
+                                class="vein branch"
+                                d="M225 135 C250 100 270 85 290 80"
+                            />
+
                         </svg>
-                        <div class="flow-legend">
-                            <span>
-                                <i class="legend-inlet"></i>
-                                주입 위치
-                            </span>
-                            <span>
-                                <i class="legend-vein"></i>
-                                잎맥
-                            </span>
-                            <span>
-                                <i class="legend-particle"></i>
-                                색소
-                            </span>
-                        </div>
-                    </div>
-                    <div class="flow-controls">
-                        <button
-                            class="primary-button"
-                            id="flowButton">
-                            색소 주입 및 관류 시작
-                        </button>
-                    </div>
-                </div>
-                <!-- FLOW DATA -->
-                <aside class="flow-data-card">
-                    <div class="card-label">
-                        REAL-TIME PARAMETERS
-                    </div>
-                    <div class="parameter">
-                        <span>
-                            경과 시간
-                        </span>
-                        <strong id="timeValue">
-                            0.0 s
-                        </strong>
-                    </div>
-                    <div class="parameter">
-                        <span>
-                            이동 거리
-                        </span>
-                        <strong id="distanceValue">
-                            0.0 mm
-                        </strong>
-                    </div>
-                    <div class="parameter">
-                        <span>
-                            평균 속도
-                        </span>
-                        <strong id="speedValue">
-                            0.0 mm/s
-                        </strong>
-                    </div>
-                    <div class="parameter">
-                        <span>
-                            분지 경로
-                        </span>
-                        <strong id="branchValue">
-                            0 / 5
-                        </strong>
-                    </div>
-                    <div class="formula-card">
-                        <div>
-                            FLOW VELOCITY
-                        </div>
-                        <strong>
-                            v = d / t
-                        </strong>
+
                         <p>
-                            이동 거리와 시간을 이용해
-                            평균 이동 속도를 계산합니다.
+                            세포 및 색소를 포함한 원래 잎 조직
                         </p>
+
                     </div>
-                    <div class="theory-card">
-                        <div class="theory-label">
-                            FLUID DYNAMICS
+
+
+                    <div class="comparison-arrow">
+                        →
+                    </div>
+
+
+                    <div>
+
+                        <div class="mini-title">
+                            AFTER
                         </div>
-                        <strong>
-                            Hagen–Poiseuille Law
-                        </strong>
+
+                        <svg viewBox="0 0 350 280">
+
+                            <path
+                                class="scaffold-outline"
+                                d="M55 160
+                                   C90 70 190 40 280 75
+                                   C325 95 320 170 270 215
+                                   C200 270 70 245 55 160Z"
+                            />
+
+                            <path
+                                class="vein scaffold-main"
+                                d="M45 170 C140 160 225 135 305 105"
+                            />
+
+                            <path
+                                class="vein scaffold"
+                                d="M125 160 C110 120 100 95 90 75"
+                            />
+
+                            <path
+                                class="vein scaffold"
+                                d="M180 150 C175 110 180 80 190 60"
+                            />
+
+                            <path
+                                class="vein scaffold"
+                                d="M225 135 C250 100 270 85 290 80"
+                            />
+
+                        </svg>
+
                         <p>
-                            이상적인 원통형 관에서 유량이
-                            관의 반지름과 압력 차이에 의해
-                            어떻게 달라지는지 설명하는 모델입니다.
+                            세포 성분이 감소하고 관다발 구조가 남은 모델
                         </p>
+
                     </div>
-                </aside>
+
+                </div>
+
             </div>
-            <div class="flow-theory-grid">
-                <div class="science-card">
-                    <div class="card-label">
-                        MICROFLUIDICS
-                    </div>
-                    <h3>
-                        미세유체 관류
-                    </h3>
-                    <p class="long-text">
-                        미세한 채널 내부에서 유체의 흐름을 제어하고
-                        관찰하는 분야입니다.
-                        <br><br>
-                        조직공학에서는 지지체 내부로 배양액 등을
-                        공급하기 위해 관류 시스템을 사용할 수 있습니다.
-                    </p>
-                </div>
-                <div class="science-card">
-                    <div class="card-label">
-                        FLOW CONTROL
-                    </div>
-                    <h3>
-                        Syringe Pump
-                    </h3>
-                    <p class="long-text">
-                        주사기 펌프는 설정된 속도로 유체를 주입할 수 있어
-                        실험에서 일정한 유량 조건을 만드는 데 활용될 수 있습니다.
-                        <br><br>
-                        실제 잎맥은 직경과 분지 형태가 균일하지 않기 때문에
-                        모든 분지에 동일한 유량이 흐른다고 가정할 수 없습니다.
-                    </p>
-                </div>
-                <div class="science-card">
-                    <div class="card-label">
-                        MODEL LIMITATION
-                    </div>
-                    <h3>
-                        압력 불균형
-                    </h3>
-                    <p class="long-text">
-                        비대칭적인 분지 네트워크에서는 각 경로의
-                        유체 저항이 달라질 수 있습니다.
-                        <br><br>
-                        따라서 실제 시스템에서는 다채널 유량 분배나
-                        밸브를 이용한 흐름 제어가 추가적으로 고려될 수 있습니다.
-                    </p>
-                </div>
-            </div>
-        </article>
-        <!-- =================================================
-             STEP 5
-        ================================================== -->
-        <article
-            class="experiment-step"
-            id="step5">
-            <div class="step-header">
-                <div class="step-number">
-                    STEP 05
-                </div>
-                <h2>
-                    결과 및 조직공학적 분석
-                </h2>
-                <p>
-                    시뮬레이션 결과를 바탕으로 식물 유래 스캐폴드,
-                    탈세포화, 유체역학, 생체모방의 관계를 종합적으로 분석합니다.
-                </p>
-            </div>
-            <!-- RESULT SUMMARY -->
-            <div class="result-summary">
-                <div class="result-item">
-                    <span>
-                        DECELLULARIZATION
-                    </span>
-                    <strong>
-                        <span id="finalDecell">
-                            0
-                        </span>%
-                    </strong>
-                </div>
-                <div class="result-item">
-                    <span>
-                        VASCULAR BRANCHES
-                    </span>
-                    <strong>
-                        5
-                    </strong>
-                </div>
-                <div class="result-item">
-                    <span>
-                        FLOW DISTANCE
-                    </span>
-                    <strong id="finalDistance">
-                        0.0 mm
-                    </strong>
-                </div>
-                <div class="result-item">
-                    <span>
-                        FLOW VELOCITY
-                    </span>
-                    <strong id="finalSpeed">
-                        0.0 mm/s
-                    </strong>
-                </div>
-            </div>
-            <!-- THEORY CARDS -->
-            <div class="theory-grid">
-                <div class="theory-large-card">
-                    <div class="theory-number">
+
+
+            <div class="theory-panel">
+
+                <div class="theory-card">
+
+                    <span class="theory-number">
                         01
-                    </div>
+                    </span>
+
                     <div>
-                        <div class="card-label">
-                            MATERIAL ENGINEERING
-                        </div>
-                        <h3>
-                            Plant-derived Scaffold
-                        </h3>
-                        <p>
-                            식물 조직의 세포 성분을 제거하고
-                            남은 구조를 생체재료용 지지체로
-                            활용하려는 접근입니다.
-                            <br><br>
-                            시금치 잎은 이미 형성되어 있는
-                            복잡한 잎맥 네트워크를 가지고 있기 때문에
-                            미세한 유체 이동 경로를 가진 구조적 모델로
-                            연구될 수 있습니다.
-                        </p>
-                    </div>
-                </div>
-                <div class="theory-large-card">
-                    <div class="theory-number">
-                        02
-                    </div>
-                    <div>
-                        <div class="card-label">
-                            TISSUE ENGINEERING
-                        </div>
+
                         <h3>
                             Extracellular Matrix
                         </h3>
+
                         <p>
-                            세포가 주변 환경과 상호작용하는
-                            구조적·생화학적 환경은 조직 재생에서 중요합니다.
-                            <br><br>
-                            식물 유래 셀룰로오스 기반 구조는
-                            물리적인 지지체 역할을 할 가능성이 있지만,
-                            인간 세포의 부착과 기능을 실제로 확보하기 위해서는
-                            별도의 표면 개질 및 생체적합성 검증이 필요합니다.
+                            동물 조직의 ECM과 식물 세포벽은
+                            동일한 물질이 아니지만, 조직공학에서는
+                            세포가 부착하고 조직 구조가 형성될 수 있는
+                            3차원 환경이라는 관점에서 지지체 설계와 연결됩니다.
                         </p>
+
                     </div>
+
                 </div>
-                <div class="theory-large-card">
-                    <div class="theory-number">
-                        03
-                    </div>
+
+
+                <div class="theory-card">
+
+                    <span class="theory-number">
+                        02
+                    </span>
+
                     <div>
-                        <div class="card-label">
-                            BIOMIMETIC DESIGN
-                        </div>
+
                         <h3>
                             Biomimicry
                         </h3>
+
                         <p>
-                            자연에서 관찰되는 구조적 특징을
-                            공학적 설계에 활용하는 개념입니다.
-                            <br><br>
-                            시금치 잎의 중심맥과 반복적인 분지 구조를
-                            관찰함으로써 복잡한 혈관 네트워크의
-                            구조적 특징을 모델링할 수 있습니다.
+                            자연계에 이미 존재하는 분지형 운반 네트워크를
+                            그대로 활용한다는 점에서
+                            biomimetic scaffold 설계의 한 사례로 볼 수 있습니다.
                         </p>
+
                     </div>
+
                 </div>
-                <div class="theory-large-card">
-                    <div class="theory-number">
-                        04
-                    </div>
+
+
+                <div class="theory-card">
+
+                    <span class="theory-number">
+                        03
+                    </span>
+
                     <div>
-                        <div class="card-label">
-                            FLUID DYNAMICS
-                        </div>
+
                         <h3>
-                            Hagen–Poiseuille & Microfluidics
+                            Structural preservation
                         </h3>
+
                         <p>
-                            미세 채널 내부의 유체 흐름을 이해하기 위해
-                            유체역학적 모델을 적용할 수 있습니다.
-                            <br><br>
-                            특히 채널 반지름의 작은 차이도 유체 저항과
-                            유량 분배에 큰 영향을 줄 수 있기 때문에,
-                            실제 잎맥 네트워크에서는 분지별 흐름이
-                            동일하지 않을 수 있습니다.
+                            탈세포화의 성공은 색 변화뿐 아니라
+                            원래의 관다발 구조가 유지되고
+                            유체가 실제로 통과할 수 있는지를 확인해야 합니다.
                         </p>
+
                     </div>
+
                 </div>
+
+
+                <div class="limitation">
+
+                    <strong>LIMITATION</strong>
+
+                    <p>
+                        탈세포화된 식물 지지체가 곧바로 인간 혈관이나
+                        심혈관 조직이 되는 것은 아닙니다.
+                        세포 재시딩, 표면 기능화, 생체적합성,
+                        혈류 및 기계적 안정성 등의 추가 검증이 필요합니다.
+                    </p>
+
+                </div>
+
             </div>
-            <!-- MURRAY -->
-            <div class="murray-section">
-                <div class="murray-header">
-                    <div>
-                        <div class="card-label">
-                            VASCULAR NETWORK THEORY
-                        </div>
-                        <h3>
-                            Murray's Law
-                        </h3>
-                    </div>
-                    <div class="theory-badge">
-                        MODEL
-                    </div>
-                </div>
-                <div class="murray-content">
-                    <div class="murray-formula">
-                        <span>
-                            대표적인 분지 모델
-                        </span>
-                        <strong>
-                            r₀³ ≈ r₁³ + r₂³
-                        </strong>
-                        <p>
-                            부모 혈관과 자식 혈관의 반지름 관계를
-                            이용하여 유체 운반과 에너지 소비의
-                            관계를 설명하는 이상화된 모델입니다.
-                        </p>
-                    </div>
-                    <div class="murray-explanation">
-                        <p>
-                            Murray's Law은 실제 모든 생물학적 혈관이나
-                            식물 잎맥에 항상 정확하게 적용되는 법칙으로
-                            해석해서는 안 됩니다.
-                            <br><br>
-                            그러나 분지 네트워크의 직경과 유량 관계를
-                            이해하기 위한 비교 모델로 사용할 수 있습니다.
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <!-- LIMITATIONS -->
-            <div class="final-analysis">
-                <div class="analysis-header">
-                    <div class="card-label">
-                        RESEARCH INTERPRETATION
-                    </div>
-                    <h3>
-                        실험에서 시뮬레이션으로
-                    </h3>
-                </div>
-                <div class="interpretation-grid">
-                    <div>
-                        <span>
-                            실제 실험
-                        </span>
-                        <p>
-                            실제 시금치 잎을 탈세포화하고
-                            현미경 관찰 및 색소 이동 실험을 수행합니다.
-                        </p>
-                    </div>
-                    <div>
-                        <span>
-                            시뮬레이션
-                        </span>
-                        <p>
-                            실제 실험의 핵심 과정을 단순화하여
-                            탈세포화와 분지형 유체 이동을 시각화합니다.
-                        </p>
-                    </div>
-                    <div>
-                        <span>
-                            과학적 모델
-                        </span>
-                        <p>
-                            유체 이동 속도, 분지 구조,
-                            Hagen–Poiseuille Law 등을 이용해
-                            관류 현상을 해석합니다.
-                        </p>
-                    </div>
-                    <div>
-                        <span>
-                            연구 한계
-                        </span>
-                        <p>
-                            실제 혈관의 생리학적 기능과
-                            동일하다고 판단하기 위해서는
-                            추가적인 생물학적 검증이 필요합니다.
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <!-- FINAL NOTE -->
-            <div class="final-note">
-                <strong>
-                    SIMULATION SCOPE
-                </strong>
-                <p>
-                    본 시뮬레이션은 시금치 잎을 이용한 식물 유래
-                    스캐폴드 연구의 개념과 실험 과정을 이해하기 위한
-                    교육용 모델입니다.
-                    <br><br>
-                    시뮬레이션에서 사용되는 수치와 유체 이동 모델은
-                    실제 실험 측정값과 구분되어야 하며,
-                    실제 조직공학 적용 가능성을 판단하기 위해서는
-                    세포 배양, 혈액적합성, 기계적 특성 및 장기적인
-                    생체적합성에 대한 추가 실험이 필요합니다.
-                </p>
-            </div>
-        </article>
+
+        </div>
+
     </section>
-    <!-- =================================================
+
+
+
+    <!-- =========================
+         STEP 4
+    ========================== -->
+
+    <section class="screen" id="screen4">
+
+        <div class="screen-heading">
+
+            <div>
+
+                <div class="eyebrow">
+                    STEP 04 · PERFUSION & MICROFLUIDICS
+                </div>
+
+                <h2>
+                    하나의 관이 아니라<br>
+                    네트워크 전체로 흐르게 합니다.
+                </h2>
+
+                <p>
+                    이 단계에서는 색소가 중심 잎맥을 따라 단순히 직선으로
+                    이동하는 것이 아니라, 분지점에서 여러 경로로 나뉘어
+                    이동하는 모습을 모델링합니다.
+                </p>
+
+            </div>
+
+            <div class="research-note">
+
+                <span>FLOW MODEL</span>
+
+                <strong>
+                    Inlet → Branch → Branch<br>
+                    → Multiple outlets
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="flow-layout">
+
+
+            <div class="visual-card flow-card">
+
+                <div class="card-header">
+
+                    <span>PERFUSION NETWORK</span>
+
+                    <span id="flowState">
+                        READY
+                    </span>
+
+                </div>
+
+
+                <svg
+                    id="vascularNetwork"
+                    viewBox="0 0 800 560"
+                >
+
+                    <!-- major network -->
+
+                    <path
+                        class="network-vessel main-vessel"
+                        d="M70 315
+                           C180 310 270 290 370 270
+                           C470 250 575 210 720 155"
+                    />
+
+                    <!-- upper branches -->
+
+                    <path
+                        class="network-vessel"
+                        d="M210 300
+                           C190 245 170 190 145 125"
+                    />
+
+                    <path
+                        class="network-vessel"
+                        d="M285 285
+                           C275 225 275 160 280 100"
+                    />
+
+                    <path
+                        class="network-vessel"
+                        d="M365 270
+                           C380 215 405 155 445 105"
+                    />
+
+                    <path
+                        class="network-vessel"
+                        d="M450 250
+                           C485 210 530 165 585 125"
+                    />
+
+                    <path
+                        class="network-vessel"
+                        d="M545 215
+                           C595 190 650 175 720 180"
+                    />
+
+                    <!-- lower branches -->
+
+                    <path
+                        class="network-vessel"
+                        d="M210 300
+                           C195 350 175 395 150 440"
+                    />
+
+                    <path
+                        class="network-vessel"
+                        d="M285 285
+                           C280 345 275 410 275 475"
+                    />
+
+                    <path
+                        class="network-vessel"
+                        d="M365 270
+                           C380 330 400 385 430 440"
+                    />
+
+                    <path
+                        class="network-vessel"
+                        d="M450 250
+                           C495 290 535 335 575 390"
+                    />
+
+                    <path
+                        class="network-vessel"
+                        d="M545 215
+                           C600 245 655 275 725 300"
+                    />
+
+                    <!-- secondary branches -->
+
+                    <path
+                        class="network-vessel small"
+                        d="M150 440 C120 460 95 475 70 485"
+                    />
+
+                    <path
+                        class="network-vessel small"
+                        d="M150 440 C145 475 140 495 135 515"
+                    />
+
+                    <path
+                        class="network-vessel small"
+                        d="M275 475 C250 500 235 520 225 535"
+                    />
+
+                    <path
+                        class="network-vessel small"
+                        d="M275 475 C300 500 315 520 325 535"
+                    />
+
+                    <path
+                        class="network-vessel small"
+                        d="M430 440 C455 465 475 490 500 515"
+                    />
+
+                    <path
+                        class="network-vessel small"
+                        d="M575 390 C610 410 640 430 670 455"
+                    />
+
+
+                    <!-- branch nodes -->
+
+                    <circle class="branch-node" cx="210" cy="300" r="7"/>
+                    <circle class="branch-node" cx="285" cy="285" r="7"/>
+                    <circle class="branch-node" cx="365" cy="270" r="7"/>
+                    <circle class="branch-node" cx="450" cy="250" r="7"/>
+                    <circle class="branch-node" cx="545" cy="215" r="7"/>
+
+
+                    <!-- animated particles -->
+
+                    <circle class="particle p1" r="7"/>
+                    <circle class="particle p2" r="7"/>
+                    <circle class="particle p3" r="7"/>
+                    <circle class="particle p4" r="7"/>
+                    <circle class="particle p5" r="7"/>
+                    <circle class="particle p6" r="7"/>
+                    <circle class="particle p7" r="7"/>
+                    <circle class="particle p8" r="7"/>
+
+                </svg>
+
+
+                <div class="flow-legend">
+
+                    <span>
+                        <i class="legend-dot inlet"></i>
+                        Inlet
+                    </span>
+
+                    <span>
+                        <i class="legend-dot branch"></i>
+                        Branch
+                    </span>
+
+                    <span>
+                        <i class="legend-dot particle"></i>
+                        Perfusate
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="flow-control">
+
+
+                <div class="control-card">
+
+                    <div class="section-label">
+                        SIMULATION CONTROL
+                    </div>
+
+                    <label>
+                        주입 유량 Q
+                    </label>
+
+                    <div class="range-line">
+
+                        <input
+                            type="range"
+                            id="flowRate"
+                            min="0.2"
+                            max="2"
+                            step="0.1"
+                            value="1"
+                        >
+
+                        <strong>
+                            <span id="flowRateValue">
+                                1.0
+                            </span>
+                            mL/min
+                        </strong>
+
+                    </div>
+
+
+                    <button
+                        id="flowButton"
+                        class="button primary"
+                    >
+                        관류 시작
+                    </button>
+
+                </div>
+
+
+                <div class="measurement-card">
+
+                    <div class="section-label">
+                        LIVE MEASUREMENT
+                    </div>
+
+                    <div class="measurement">
+
+                        <span>경과 시간</span>
+
+                        <strong id="timeValue">
+                            0.0 s
+                        </strong>
+
+                    </div>
+
+                    <div class="measurement">
+
+                        <span>모델 이동 거리</span>
+
+                        <strong id="distanceValue">
+                            0.0 mm
+                        </strong>
+
+                    </div>
+
+                    <div class="measurement">
+
+                        <span>평균 속도</span>
+
+                        <strong id="speedValue">
+                            0.0 mm/s
+                        </strong>
+
+                    </div>
+
+                    <div class="measurement">
+
+                        <span>활성 분지</span>
+
+                        <strong id="activeBranches">
+                            0 / 11
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="equation-card">
+
+                    <span>FLOW RELATION</span>
+
+                    <div class="equation">
+                        Q = ΔP / R
+                    </div>
+
+                    <p>
+                        단순화된 유체저항 모델입니다.
+                        실제 미세유체계에서는 채널 길이,
+                        반지름, 점도 및 분지 구조가
+                        유체 저항에 영향을 줍니다.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="science-box">
+
+            <div class="section-label">
+                HAGEN–POISEUILLE & MICROFLUIDICS
+            </div>
+
+            <p>
+                원통형의 이상적인 층류 조건에서는
+                유량이 압력차와 관의 반지름에 강하게 의존합니다.
+                특히 반지름의 변화가 유체저항에 큰 영향을 주기 때문에
+                미세혈관 네트워크에서는 분지에 따른 유량 분배가 중요합니다.
+            </p>
+
+            <div class="formula">
+                Q = ΔPπr⁴ / 8μL
+            </div>
+
+            <small>
+                이 식은 이상적인 원통형 채널의 모델이며,
+                실제 시금치 잎맥의 복잡한 형상을 완전히 설명하지 않습니다.
+            </small>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         STEP 5
+    ========================== -->
+
+    <section class="screen" id="screen5">
+
+        <div class="screen-heading">
+
+            <div>
+
+                <div class="eyebrow">
+                    STEP 05 · SCIENTIFIC ANALYSIS
+                </div>
+
+                <h2>
+                    실험 결과를<br>
+                    조직공학의 언어로 해석합니다.
+                </h2>
+
+                <p>
+                    관찰한 현상을 Plant-derived Scaffold,
+                    Decellularization, Biomimicry,
+                    Microfluidics 및 혈관 분지 모델과 연결합니다.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="result-grid">
+
+            <div class="result-card">
+
+                <span>DECELLULARIZATION</span>
+
+                <strong>
+                    STRUCTURE RETAINED
+                </strong>
+
+                <p>
+                    세포 성분을 제거하면서
+                    관다발 구조를 유지하는 것이 핵심입니다.
+                </p>
+
+            </div>
+
+
+            <div class="result-card">
+
+                <span>PLANT-DERIVED SCAFFOLD</span>
+
+                <strong>
+                    CELLULOSE
+                </strong>
+
+                <p>
+                    탈세포화 후 남는 식물성 구조의
+                    주요 지지 물질로 연구되고 있습니다.
+                </p>
+
+            </div>
+
+
+            <div class="result-card">
+
+                <span>PERFUSION</span>
+
+                <strong id="finalDistance">
+                    0.0 mm
+                </strong>
+
+                <p>
+                    모델상 색소가 여러 분지 경로로
+                    이동하는 것을 확인합니다.
+                </p>
+
+            </div>
+
+
+            <div class="result-card">
+
+                <span>FLOW VELOCITY</span>
+
+                <strong id="finalSpeed">
+                    0.00 mm/s
+                </strong>
+
+                <p>
+                    평균 이동 속도는
+                    이동거리와 시간으로 계산합니다.
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="deep-analysis">
+
+
+            <article class="research-section">
+
+                <div class="research-index">
+                    01
+                </div>
+
+                <div>
+
+                    <div class="section-label">
+                        MATERIAL ENGINEERING
+                    </div>
+
+                    <h3>
+                        Plant-derived Scaffold & Extracellular Matrix
+                    </h3>
+
+                    <p>
+                        탈세포화 식물 조직은 자연적으로 존재하는
+                        3차원 구조를 활용한다는 점에서
+                        식물 유래 지지체(plant-derived scaffold)의
+                        한 사례로 연구되고 있습니다.
+                    </p>
+
+                    <p>
+                        시금치 잎의 탈세포화 연구에서는
+                        세포 성분을 제거한 뒤에도 잎의 관다발이
+                        관류 가능한 상태로 남을 수 있음이 보고되었습니다.
+                        이러한 구조적 장점 때문에 조직공학에서는
+                        세포가 접근할 수 있는 공간과 유체 운반 경로를
+                        동시에 제공하는 scaffold로 연구됩니다.
+                    </p>
+
+                    <div class="concept-list">
+
+                        <span>Plant-derived Scaffold</span>
+                        <span>Cellulose</span>
+                        <span>ECM</span>
+                        <span>Decellularization</span>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+
+            <article class="research-section">
+
+                <div class="research-index">
+                    02
+                </div>
+
+                <div>
+
+                    <div class="section-label">
+                        FLUID MECHANICS
+                    </div>
+
+                    <h3>
+                        Hagen–Poiseuille Law & Microfluidics
+                    </h3>
+
+                    <p>
+                        미세 유체 채널에서는 압력차, 유량, 점도,
+                        채널의 길이와 반지름이 유체저항을 결정합니다.
+                        이상적인 원통형 채널에서는 Hagen–Poiseuille
+                        관계를 이용해 압력과 유량의 관계를 모델링할 수 있습니다.
+                    </p>
+
+                    <div class="large-formula">
+                        Q =
+                        <span>
+                            ΔPπr⁴
+                        </span>
+                        /
+                        <span>
+                            8μL
+                        </span>
+                    </div>
+
+                    <p>
+                        여기서 Q는 유량, ΔP는 압력차,
+                        r은 채널 반지름, μ는 점도,
+                        L은 채널 길이입니다.
+                        특히 r⁴ 항 때문에 채널 크기의 작은 변화도
+                        유체저항에 큰 영향을 줄 수 있습니다.
+                    </p>
+
+                    <div class="engineering-note">
+
+                        <strong>
+                            Engineering problem
+                        </strong>
+
+                        <span>
+                            실제 잎맥은 비대칭적인 분지 구조를 가지므로
+                            각 가지에 동일한 유량이 흐른다고 가정할 수 없습니다.
+                            따라서 실제 조직공학 시스템에서는
+                            perfusion bioreactor, pressure control,
+                            flow distribution 등의 설계가 중요합니다.
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+
+            <article class="research-section">
+
+                <div class="research-index">
+                    03
+                </div>
+
+                <div>
+
+                    <div class="section-label">
+                        VASCULAR GEOMETRY
+                    </div>
+
+                    <h3>
+                        Branching Network & Murray's Law
+                    </h3>
+
+                    <p>
+                        혈관계와 일부 식물의 운반 네트워크에서는
+                        분지 직경과 유체 운반 효율 사이의 관계를
+                        Murray's Law와 같은 최적화 모델로 설명할 수 있습니다.
+                    </p>
+
+                    <div class="large-formula">
+                        d₀³ ≈ d₁³ + d₂³
+                    </div>
+
+                    <p>
+                        이상적인 이분지 모델에서는 부모 혈관의 직경
+                        세제곱이 두 자식 혈관 직경의 세제곱 합과
+                        관계를 갖는다고 표현합니다.
+                        그러나 실제 생물학적 네트워크가 모든 분지에서
+                        정확하게 이 법칙을 따르는 것은 아닙니다.
+                    </p>
+
+                    <div class="engineering-note">
+
+                        <strong>
+                            Simulation interpretation
+                        </strong>
+
+                        <span>
+                            이 시뮬레이션에서는 Murray's Law을
+                            “시금치 잎맥이 반드시 따른다”는 의미가 아니라,
+                            분지 네트워크의 유체역학적 효율을 이해하기 위한
+                            이론적 비교 모델로 사용합니다.
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+
+            <article class="research-section">
+
+                <div class="research-index">
+                    04
+                </div>
+
+                <div>
+
+                    <div class="section-label">
+                        TISSUE ENGINEERING
+                    </div>
+
+                    <h3>
+                        Decellularization → Scaffold → Recellularization
+                    </h3>
+
+                    <p>
+                        조직공학의 기본적인 흐름은 단순히 세포를 제거하는 데
+                        끝나지 않습니다. 지지체의 구조와 물성을 확인한 뒤
+                        필요한 세포가 부착하고 기능할 수 있도록
+                        표면 및 미세환경을 설계하는 단계가 이어집니다.
+                    </p>
+
+                    <div class="pipeline">
+
+                        <div>
+                            <b>01</b>
+                            <span>Decellularization</span>
+                        </div>
+
+                        <div>
+                            <b>02</b>
+                            <span>Structural verification</span>
+                        </div>
+
+                        <div>
+                            <b>03</b>
+                            <span>Surface functionalization</span>
+                        </div>
+
+                        <div>
+                            <b>04</b>
+                            <span>Recellularization</span>
+                        </div>
+
+                        <div>
+                            <b>05</b>
+                            <span>Perfusion / maturation</span>
+                        </div>
+
+                    </div>
+
+                    <p>
+                        실제 연구에서는 fibronectin이나 collagen IV와 같은
+                        ECM 단백질을 이용한 표면 코팅이 연구되었지만,
+                        후속 연구에서는 코팅 없이도 일부 심근세포의
+                        부착과 기능이 가능함이 보고되었습니다.
+                        따라서 “반드시 ECM 코팅이 필요하다”라고
+                        단정하기보다는 세포 종류와 목적에 따른
+                        표면 설계 문제로 이해하는 것이 적절합니다.
+                    </p>
+
+                </div>
+
+            </article>
+
+
+        </div>
+
+
+
+        <div class="final-conclusion">
+
+            <div class="section-label">
+                CONCLUSION
+            </div>
+
+            <h3>
+                자연의 분지 네트워크를<br>
+                조직공학적 유체 운반 구조로 바라보기
+            </h3>
+
+            <p>
+                시금치 잎은 인간 혈관과 동일한 조직이 아니지만,
+                자연적으로 형성된 계층적 관다발 네트워크를 가지고 있습니다.
+                탈세포화를 통해 세포 성분을 제거하고 구조를 보존하면,
+                이 네트워크를 이용한 식물 유래 pre-vascularized scaffold라는
+                조직공학적 아이디어를 탐구할 수 있습니다.
+            </p>
+
+            <p>
+                따라서 이 실험의 핵심은 “시금치 잎이 인간 혈관이 되는가?”가 아니라,
+                <b>“자연적으로 존재하는 미세 유체 네트워크를
+                조직공학용 지지체의 구조적 자원으로 활용할 수 있는가?”</b>
+                라는 질문으로 확장됩니다.
+            </p>
+
+        </div>
+
+
+
+        <div class="references">
+
+            <div class="section-label">
+                RESEARCH REFERENCES
+            </div>
+
+            <p>
+                Gershlak et al. (2017),
+                <i>Crossing Kingdoms: Using Decellularized Plants as
+                Perfusable Tissue Engineering Scaffolds</i>.
+            </p>
+
+            <p>
+                Decellularized spinach scaffold 연구 및
+                cardiomyocyte-containing biomaterial 연구.
+            </p>
+
+            <p>
+                Hagen–Poiseuille 기반 microfluidic flow model 및
+                vascular branching 연구.
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
          NAVIGATION
-    ================================================== -->
-    <nav class="navigation">
+    ========================== -->
+
+    <div class="navigation">
+
         <button
-            class="secondary-button"
             id="prevButton"
-            disabled>
+            class="button secondary"
+            disabled
+        >
             ← 이전
         </button>
-        <div class="navigation-status">
-            <span id="currentStep">
+
+        <div class="page-counter">
+
+            <strong id="currentStep">
                 1
-            </span>
+            </strong>
+
             <span>
                 /
             </span>
+
             <span>
                 5
             </span>
+
         </div>
+
         <button
-            class="primary-button"
-            id="nextButton">
+            id="nextButton"
+            class="button primary"
+        >
             다음 단계 →
         </button>
-    </nav>
+
+    </div>
+
 </main>
-<!-- =====================================================
-     FOOTER
-===================================================== -->
-<footer class="site-footer">
+
+
+<footer>
+
     <p>
-        Spinach Vascular Scaffold · Educational Research Simulation
+        Spinach Vascular Scaffold Simulation
     </p>
+
     <p>
-        Experimental observations, theoretical models, and simulation assumptions
-        are presented separately.
+        Educational model · Not a clinical or experimental protocol
     </p>
+
 </footer>
+
+
 <script src="script.js"></script>
+
 </body>
 </html>
